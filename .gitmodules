@@ -1,0 +1,6 @@
+[submodule "includes/ft_printf"]
+	path = includes/ft_printf
+	url = https://github.com/maoow/ft_printf.git
+[submodule "includes/ft_printf/includes/libft"]
+	path = includes/ft_printf/includes/libft
+	url = https://github.com/maoow/libft.git
