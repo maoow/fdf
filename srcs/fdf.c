@@ -14,9 +14,9 @@
 
 void			init_env(t_fdfenv *env)
 {
-int	bpp;
-int	s_l;
-int	endian;
+	int	bpp;
+	int	s_l;
+	int	endian;
 	env->mlx = mlx_init();
 	env->width = 500;
 	env->height = 500;
@@ -27,8 +27,42 @@ int	endian;
 	env->imgstr= (unsigned int *)mlx_get_data_addr(env->img,&(bpp), &(s_l), &(endian));
 	mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
 }
+void			getmap(t_fdfenv *env, char *path)
+{
+	int fd;
+	int	i;
+	int	j;
+	char	**strmap;
+	char	**strmap2;
 
-int			main()
+	i = 0;
+	strmap = (char **)malloc(sizeof(char*));
+	if ((fd = open(path, O_RDONLY)))
+	{
+		while (get_next_line(fd, &(strmap[i])) > 0)
+		{
+			i++;
+			strmap2 = (char **)malloc(i * sizeof(char*));
+			j = 0;
+			while (j < i)
+			{
+				strmap2[j] = strmap[j];
+				j++;
+			}
+			strmap = (char **)malloc((i + 1) * sizeof(char*));
+			j = 0;
+			while (j < i)
+			{
+				strmap[j] = strmap2[j];
+				j++;
+			}
+				strmap[j] = NULL;
+		}
+	}
+mapparse(env, strmap);
+}
+
+int			main(int ac, char **av)
 {
 	void	*mlx;
 	void	*win;
@@ -37,8 +71,10 @@ int			main()
 
 	i = 0 ;
 	init_env(&env);
+	getmap(&env, av[1]);
 	mlx_key_hook(env.win, keypressed, &env);
 	mlx_mouse_hook(env.win, buttonpressed, &env);
+ft_printf("%d\n",env.map[0][0].z);
 	mlx_loop(env.mlx);
 	return (0);
 }
