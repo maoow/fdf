@@ -6,13 +6,23 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/05/13 16:38:30 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/17 13:42:17 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 int			main()
 {
+	void	*mlx;
+	void	*win;
+	size_t	i;
 
+	i = 0 ;
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 400, 400, "test");
+	while(true)
+		i++;
+		
+	return (0);
 }
