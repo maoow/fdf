@@ -56,6 +56,7 @@ typedef struct	s_fdfenv
 	size_t		height;
 	size_t		x;
 	size_t		y;
+	size_t		top;
 	size_t		zoom;
 	t_vertex	camera;
 	t_point		**map;

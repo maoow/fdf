@@ -22,12 +22,13 @@ drawpoint(env);
 }
 void			higher(t_fdfenv *env)
 {
-env->camera.a.z+= 10;
+env->top++;
 drawpoint(env);
 }
 void			lower(t_fdfenv *env)
 {
-env->camera.a.z-= 10;
+if (env->top != 1)
+env->top--;
 drawpoint(env);
 }
 void			zoom(t_fdfenv *env)
