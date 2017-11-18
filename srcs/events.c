@@ -22,6 +22,7 @@ void		(*g_buttonf[B_NB])() =
 	&up,
 	&right
 };
+
 int		g_key[K_NB] =
 {
 	113,
@@ -32,7 +33,13 @@ int		g_key[K_NB] =
 	102,
 	100,
 	110,
-	109
+	109,
+	117,
+	121,
+	111,
+	55,
+	56,
+	105
 };
 void		(*g_keyf[K_NB])() =
 {
@@ -44,7 +51,13 @@ void		(*g_keyf[K_NB])() =
 	&higher,
 	&lower,
 	&zoom,
-	&dezoom
+	&dezoom,
+	&maprotate,
+	&maprotate,
+	&maprotate,
+	&maprotate,
+	&maprotate,
+	&maprotate
 };
 
 int			buttonpressed(int key,int x,int y, t_fdfenv *env)
@@ -67,6 +80,7 @@ int	s_l;
 int	endian;
 
 	count = 0;
+env->key = key;
 	while(count < K_NB)
 	{
 		if (key == g_key[count])
