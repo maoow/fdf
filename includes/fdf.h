@@ -60,6 +60,7 @@ typedef struct	s_fdfenv
 	t_vertex	camera;
 	t_point		**map;
 	t_point		mapsize;
+	t_fpoint	rotate;
 	void		*img;
 	unsigned int	*imgstr;
 	int		key;
