@@ -33,6 +33,9 @@ void			init_env(t_fdfenv *env)
 	env->camera.b.x = 10;
 	env->camera.b.y = 10;
 	env->camera.b.z = 0;
+	env->rotate.x = 0;
+	env->rotate.y = 0;
+	env->rotate.z = 0;
 }
 void			getmap(t_fdfenv *env, char *path)
 {
@@ -79,7 +82,7 @@ int			main(int ac, char **av)
 	i = 0 ;
 	init_env(&env);
 	getmap(&env, av[1]);
-drawpoint(&env);
+	drawpoint(&env);
 	mlx_key_hook(env.win, keypressed, &env);
 	mlx_mouse_hook(env.win, buttonpressed, &env);
 	mlx_loop(env.mlx);
