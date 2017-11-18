@@ -2,7 +2,7 @@
 
 void			left(t_fdfenv *env)
 {
-env->camera.a.z++;
+env->camera.a.x++;
 drawpoint(env);
 }
 void			up(t_fdfenv *env)
@@ -32,7 +32,7 @@ void			down(t_fdfenv *env)
 		j = 0;
 		while (j < env->mapsize.x)
 		{
-			env->map[i][j].z++;
+			env->map[i][j].z--;
 			j++;
 		}
 		i++;
@@ -40,6 +40,16 @@ void			down(t_fdfenv *env)
 drawpoint(env);
 }
 void			right(t_fdfenv *env)
+{
+env->camera.a.x--;
+drawpoint(env);
+}
+void			higher(t_fdfenv *env)
+{
+env->camera.a.z++;
+drawpoint(env);
+}
+void			lower(t_fdfenv *env)
 {
 env->camera.a.z--;
 drawpoint(env);
