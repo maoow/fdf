@@ -28,6 +28,11 @@ void		drawpoint(t_fdfenv *env)
 		while (j < env->mapsize.x)
 		{
 			project(env, env->map[i][j], &tmp);
+			if (i < env->mapsize.y - 1)
+			{
+				project(env, env->map[i + 1][j], &tmp2);
+drawline(env, tmp,tmp2);
+			}
 			j++;
 			if (j < env->mapsize.x)
 			{
