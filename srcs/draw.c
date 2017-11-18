@@ -1,5 +1,12 @@
 #include "fdf.h"
 
+void		pixel_add(t_fdfenv *env, int x, int y, int color)
+{
+	if (x < env->width && x >= 0 && y < env->height && y >= 0)
+{
+	env->imgstr[x + y * env->width] = color;
+}
+}
 void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
 {
 	t_pixel	pen;
@@ -36,7 +43,42 @@ if (mod.y == 0)
 		if (i % mod.y == 0 && pen.y != target.y)
 			pen.y += dir.y;
 		i++;
-		mlx_pixel_put(env->mlx, env->win, a.x + pen.x, a.y + pen.y, 0x00FFFFFF);
+		pixel_add(env, a.x + pen.x, a.y + pen.y, 0x00FFFFFF);
 	}
 }
 
+void		drawpoint(t_fdfenv *env)
+{
+	int	i;
+	int	j;
+	t_pixel	tmp;
+	t_pixel	tmp2;
+	int	bpp;
+	int	s_l;
+	int	endian;
+	i = 0;
+	env->img = mlx_new_image(env->mlx, env->width, env->height);
+	env->imgstr= (unsigned int *)mlx_get_data_addr(env->img,&(bpp), &(s_l), &(endian));
+	while (i < env->mapsize.y)
+	{
+		j = 0;
+		while (j < env->mapsize.x)
+		{
+			project(env, env->map[i][j], &tmp);
+			if (i < env->mapsize.y - 1)
+			{
+				project(env, env->map[i + 1][j], &tmp2);
+drawline(env, tmp,tmp2);
+			}
+			j++;
+			if (j < env->mapsize.x)
+			{
+				project(env, env->map[i][j], &tmp2);
+drawline(env, tmp,tmp2);
+			}
+		}
+		i++;
+	}
+	mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
+mlx_destroy_image(env->mlx, env->img);
+}
