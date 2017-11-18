@@ -2,32 +2,32 @@
 
 void			left(t_fdfenv *env)
 {
-env->camera.a.x++;
+env->camera.a.x+= 10;
 drawpoint(env);
 }
 void			up(t_fdfenv *env)
 {
-env->camera.a.y++;
+env->camera.a.y+= 10;
 drawpoint(env);
 }
 void			down(t_fdfenv *env)
 {
-env->camera.a.y--;
+env->camera.a.y-= 10;
 drawpoint(env);
 }
 void			right(t_fdfenv *env)
 {
-env->camera.a.x--;
+env->camera.a.x-= 10;
 drawpoint(env);
 }
 void			higher(t_fdfenv *env)
 {
-env->camera.a.z++;
+env->camera.a.z+= 10;
 drawpoint(env);
 }
 void			lower(t_fdfenv *env)
 {
-env->camera.a.z--;
+env->camera.a.z-= 10;
 drawpoint(env);
 }
 void			zoom(t_fdfenv *env)
