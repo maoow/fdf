@@ -1,14 +1,22 @@
 #include "fdf.h"
 
+static void	apply_rotation(t_fdfenv *env, t_point point, t_point *tmp)
+{
+}
+
 void		project(t_fdfenv *env, t_point point, t_pixel *pixel)
 {
-	pixel->x = env->camera.a.z * (point.x - (env->camera.a.x));
-	pixel->y = env->camera.a.z * (point.y - (env->camera.a.y));
-//ft_printf("%d %d\n",pixel->x,pixel->y);
-	if (env->camera.a.z - point.z)
+	t_point	tmp;
+	tmp.x = point.x;
+	tmp.y = point.y;
+	tmp.z = point.z;
+	rotate(&tmp, env->rotate);
+	pixel->x = env->camera.a.z * (tmp.x - (env->camera.a.x));
+	pixel->y = env->camera.a.z * (tmp.y - (env->camera.a.y));
+	if (env->camera.a.z - tmp.z)
 	{
-		pixel->x /= env->camera.a.z - point.z;
-		pixel->y /= env->camera.a.z - point.z;
+		pixel->x /= env->camera.a.z - tmp.z;
+		pixel->y /= env->camera.a.z - tmp.z;
 	}
 	pixel->x *=  env->zoom;
 	pixel->y *=  env->zoom;
