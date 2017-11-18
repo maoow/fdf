@@ -19,9 +19,9 @@
 
 typedef struct	s_point
 {
-	size_t	x;
-	size_t	y;
-	size_t	z;
+	int	x;
+	int	y;
+	int	z;
 }		t_point;
 
 typedef struct	s_vertex
@@ -32,8 +32,8 @@ typedef struct	s_vertex
 
 typedef struct	s_pixel
 {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 }		t_pixel;
 
 typedef struct	s_line
@@ -62,3 +62,5 @@ void			right(t_fdfenv *env);
 void			down(t_fdfenv *env);
 void			up(t_fdfenv *env);
 void			left(t_fdfenv *env);
+void		drawpoint(t_fdfenv *env);
+void		project(t_fdfenv *env, t_point point, t_pixel *pixel);
