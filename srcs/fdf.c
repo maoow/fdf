@@ -86,6 +86,7 @@ int			main(int ac, char **av)
 	drawpoint(&env);
 	mlx_key_hook(env.win, keypressed, &env);
 	mlx_mouse_hook(env.win, buttonpressed, &env);
+	mlx_loop_hook(env.mlx, loopachieved, &env);
 	mlx_loop(env.mlx);
 	return (0);
 }

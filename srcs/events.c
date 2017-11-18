@@ -8,18 +8,18 @@ void			quit()
 
 int		g_button[B_NB] =
 {
-	113,
-	104,
-	106,
-	107,
+	3,
+	4,
+	5,
+	1,
 	108
 };
 void		(*g_buttonf[B_NB])() =
 {
-	&quit,
-	&left,
-	&down,
-	&up,
+	&mouserotate,
+	&zoom,
+	&dezoom,
+	&center,
 	&right
 };
 
@@ -60,33 +60,43 @@ void		(*g_keyf[K_NB])() =
 	&maprotate
 };
 
+int			loopachieved(t_fdfenv *env)
+{
+mouserotate(env);
+}
 int			buttonpressed(int key,int x,int y, t_fdfenv *env)
 {
 	size_t		count;
 
 	count = 0;
+	env->mouse.x = x;
+	env->mouse.y = y;
+	env->key = key;
 	while(count < K_NB)
 	{
 		if (key == g_button[count])
 			g_buttonf[count](env);
+		else
+			ft_printf("%d\n", key);
 		count++;
 	}
 }
+
 int			keypressed(int key, t_fdfenv *env)
 {
 	size_t		count;
-int	bpp;
-int	s_l;
-int	endian;
+	int	bpp;
+	int	s_l;
+	int	endian;
 
 	count = 0;
-env->key = key;
+	env->key = key;
 	while(count < K_NB)
 	{
 		if (key == g_key[count])
 			g_keyf[count](env);
-else
-ft_printf("%d\n", key);
+		else
+			ft_printf("%d\n", key);
 		count++;
 	}
 }

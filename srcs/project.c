@@ -1,9 +1,5 @@
 #include "fdf.h"
 
-static void	apply_rotation(t_fdfenv *env, t_point point, t_point *tmp)
-{
-}
-
 void		project(t_fdfenv *env, t_point point, t_pixel *pixel)
 {
 	t_point	tmp;

@@ -1,5 +1,20 @@
 #include "fdf.h"
 
+void			mouserotate(t_fdfenv *env)
+{
+if (env->key == 3)
+{
+	env->rotate.y -= ((float)env->mouse.x - (float)env->width / 2) / 1000;
+	env->rotate.x += ((float)env->mouse.y - (float)env->height / 2) / 1000;
+	drawpoint(env);
+}
+}
+void			center(t_fdfenv *env)
+{
+env->camera.a.x += env->mouse.x - env->width / 2;
+env->camera.a.y += env->mouse.y - env->height / 2;
+drawpoint(env);
+}
 void			left(t_fdfenv *env)
 {
 env->camera.a.x+= 10;
