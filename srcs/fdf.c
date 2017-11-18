@@ -28,8 +28,8 @@ void			init_env(t_fdfenv *env)
 	//mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
-	env->camera.a.z = 10;
-	env->zoom = 20;
+	env->camera.a.z = 2000;
+	env->zoom = 1;
 	env->camera.b.x = 10;
 	env->camera.b.y = 10;
 	env->camera.b.z = 0;
