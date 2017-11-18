@@ -1,5 +1,32 @@
 #include "fdf.h"
 
+void		point_add(t_fdfenv *env, int x, int y, int color)
+{
+	int i;
+	int j;
+	env->pointsize = env->smooth - 1;
+	j = -env->pointsize;
+	while (j <= env->pointsize)
+	{
+		i = -env->pointsize;
+		while (i <= env->pointsize)
+		{
+			if (x + i < env->width && x + i >= 0 && y + j < env->height && y + j >= 0)
+			{
+				if (
+						env->pointsize < 2 ||
+						!(
+							(i == env->pointsize || i == -env->pointsize)
+							&& (j == env->pointsize || j == -env->pointsize)
+						 )
+				   )
+					env->imgstr[x + i + (y + j) * env->width] = color;
+			}
+			i++;
+		}
+		j++;
+	}
+}
 void		pixel_add(t_fdfenv *env, int x, int y, int color)
 {
 	if (x < env->width && x >= 0 && y < env->height && y >= 0)
@@ -20,34 +47,30 @@ void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
 	pen.y = 0;
 	dir.x = 1;
 	dir.y = 1;
-	mod.x = 1;
-	mod.y = 1;
+	mod.x = env->smooth;
+	mod.y = env->smooth;
 	target.x = b.x - a.x;
 	target.y = b.y - a.y;
-	//target.x *= env->smooth;
-	//target.y *= env->smooth;
 	if (target.x < 0)
 		dir.x = -1;
 	if (target.y < 0)
 		dir.y = -1;
 	if (abs(target.x) > abs(target.y) && abs(target.y))
 	{
-		mod.y = round(abs(target.x) / abs(target.y));
+		mod.y = round((abs(target.x) * env->smooth) / abs(target.y));
 	}
 	else if (abs(target.x))
-		mod.x = round(abs(target.y) / abs(target.x));
+		mod.x = round((abs(target.y) * env->smooth) / abs(target.x));
 	if (mod.x == 0)
-{
-		mod.x = 1;
-		mod.y++;
-}
+	{
+		mod.x = env->smooth;
+		mod.y += env->smooth;
+	}
 	if (mod.y == 0)
-{
-		mod.y = 1;
-mod.x++;
-}
-	//target.x /= env->smooth;
-	//target.y /= env->smooth;
+	{
+		mod.y = env->smooth;
+		mod.x += env->smooth;
+	}
 	while (target.x != pen.x || target.y != pen.y)
 	{
 		if (i % mod.x == 0 && pen.x != target.x)
@@ -57,6 +80,7 @@ mod.x++;
 		i++;
 		pixel_add(env, a.x + pen.x, a.y + pen.y, 0x00FFFFFF);
 	}
+	point_add(env, a.x + pen.x, a.y + pen.y, 0x0000FF00);
 }
 
 void		drawpoint(t_fdfenv *env)
