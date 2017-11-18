@@ -49,7 +49,6 @@ if (mod.y == 0)
 
 void		drawpoint(t_fdfenv *env)
 {
-ft_printf("%d\n", env->camera.a.z);
 	int	i;
 	int	j;
 	t_pixel	tmp;

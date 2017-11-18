@@ -2,14 +2,9 @@
 
 void	addpoint(t_fdfenv *env, size_t x, size_t y, size_t z)
 {
-	t_fpoint r;
-	r.x = -0.75;
-	r.y = 0;
-	r.z = 0;
 	env->map[y][x].x = (x - env->mapsize.x / 2) * 10;
 	env->map[y][x].y = (y - env->mapsize.y / 2) * 10;
-	env->map[y][x].z = z * 10;
-rotate(env, y, x, r);
+	env->map[y][x].z = z * 2;
 }
 
 void	initmap(t_fdfenv *env)

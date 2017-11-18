@@ -39,6 +39,5 @@ void			dezoom(t_fdfenv *env)
 {
 if (env->zoom > 1)
 env->zoom--;
-ft_printf("dezoom");
 drawpoint(env);
 }
