@@ -23,9 +23,9 @@ void			init_env(t_fdfenv *env)
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
 	env->x = 20;
 	env->y = 20;
-	env->img = mlx_new_image(env->mlx, env->width, env->height);
-	env->imgstr= (unsigned int *)mlx_get_data_addr(env->img,&(bpp), &(s_l), &(endian));
-	mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
+	//env->img = mlx_new_image(env->mlx, env->width, env->height);
+	//env->imgstr= (unsigned int *)mlx_get_data_addr(env->img,&(bpp), &(s_l), &(endian));
+	//mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
 	env->camera.a.x = -5;
 	env->camera.a.y = -5;
 	env->camera.a.z = 10;

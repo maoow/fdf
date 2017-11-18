@@ -14,7 +14,8 @@
 #include "ft_printf.h"
 #include "libft.h"
 #include "get_next_line.h"
-#define K_NB 5
+#define K_NB 7
+#define B_NB 5
 
 
 typedef struct	s_point
@@ -62,6 +63,8 @@ void			right(t_fdfenv *env);
 void			down(t_fdfenv *env);
 void			up(t_fdfenv *env);
 void			left(t_fdfenv *env);
+void			lower(t_fdfenv *env);
+void			higher(t_fdfenv *env);
 void		drawpoint(t_fdfenv *env);
 void		project(t_fdfenv *env, t_point point, t_pixel *pixel);
 void		drawline(t_fdfenv *env, t_pixel a, t_pixel b);
