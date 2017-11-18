@@ -30,7 +30,9 @@ int		g_key[K_NB] =
 	107,
 	108,
 	102,
-	100
+	100,
+	110,
+	109
 };
 void		(*g_keyf[K_NB])() =
 {
@@ -40,7 +42,9 @@ void		(*g_keyf[K_NB])() =
 	&up,
 	&right,
 	&higher,
-	&lower
+	&lower,
+	&zoom,
+	&dezoom
 };
 
 int			buttonpressed(int key,int x,int y, t_fdfenv *env)
