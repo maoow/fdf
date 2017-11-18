@@ -66,7 +66,10 @@ void		(*g_keyf[K_NB])() =
 
 int			loopachieved(t_fdfenv *env)
 {
-mouserotate(env);
+if (env->key == 0)
+env->rotate.z += 0.001;
+	drawpoint(env);
+printf("x: %f y: %f z: %f\nzoom: %d\n\n", env->rotate.x, env->rotate.y, env->rotate.z,env->zoom);
 }
 int			buttonpressed(int key,int x,int y, t_fdfenv *env)
 {
@@ -80,8 +83,6 @@ int			buttonpressed(int key,int x,int y, t_fdfenv *env)
 	{
 		if (key == g_button[count])
 			g_buttonf[count](env);
-		else
-			ft_printf("%d\n", key);
 		count++;
 	}
 }
@@ -89,9 +90,6 @@ int			buttonpressed(int key,int x,int y, t_fdfenv *env)
 int			keypressed(int key, t_fdfenv *env)
 {
 	size_t		count;
-	int	bpp;
-	int	s_l;
-	int	endian;
 
 	count = 0;
 	env->key = key;
@@ -99,8 +97,6 @@ int			keypressed(int key, t_fdfenv *env)
 	{
 		if (key == g_key[count])
 			g_keyf[count](env);
-		else
-			ft_printf("%d\n", key);
 		count++;
 	}
 }
