@@ -14,10 +14,16 @@
 #include "ft_printf.h"
 #include "libft.h"
 #include "get_next_line.h"
-#define K_NB 9
+#define K_NB 15
 #define B_NB 5
 
 
+typedef struct	s_fpoint
+{
+	float	x;
+	float	y;
+	float	z;
+}		t_fpoint;
 typedef struct	s_point
 {
 	int	x;
@@ -56,6 +62,7 @@ typedef struct	s_fdfenv
 	t_point		mapsize;
 	void		*img;
 	unsigned int	*imgstr;
+	int		key;
 }	t_fdfenv;
 
 int			keypressed(int key, t_fdfenv *env);
@@ -68,6 +75,7 @@ void			lower(t_fdfenv *env);
 void			higher(t_fdfenv *env);
 void			zoom(t_fdfenv *env);
 void			dezoom(t_fdfenv *env);
+void			maprotate(t_fdfenv *env);
 void		drawpoint(t_fdfenv *env);
 void		project(t_fdfenv *env, t_point point, t_pixel *pixel);
 void		drawline(t_fdfenv *env, t_pixel a, t_pixel b);
