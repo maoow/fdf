@@ -6,7 +6,7 @@ void			quit()
 	exit(0);
 }
 
-int		g_button[K_NB] =
+int		g_button[B_NB] =
 {
 	113,
 	104,
@@ -14,7 +14,7 @@ int		g_button[K_NB] =
 	107,
 	108
 };
-void		(*g_buttonf[K_NB])() =
+void		(*g_buttonf[B_NB])() =
 {
 	&quit,
 	&left,
@@ -28,7 +28,9 @@ int		g_key[K_NB] =
 	104,
 	106,
 	107,
-	108
+	108,
+	102,
+	100
 };
 void		(*g_keyf[K_NB])() =
 {
@@ -36,7 +38,9 @@ void		(*g_keyf[K_NB])() =
 	&left,
 	&down,
 	&up,
-	&right
+	&right,
+	&higher,
+	&lower
 };
 
 int			buttonpressed(int key,int x,int y, t_fdfenv *env)
@@ -63,6 +67,8 @@ int	endian;
 	{
 		if (key == g_key[count])
 			g_keyf[count](env);
+else
+ft_printf("%d\n", key);
 		count++;
 	}
 }
