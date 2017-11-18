@@ -65,19 +65,23 @@ typedef struct	s_fdfenv
 	void		*img;
 	unsigned int	*imgstr;
 	int		key;
+	t_pixel		mouse;
 }	t_fdfenv;
 
 int			keypressed(int key, t_fdfenv *env);
 int			buttonpressed(int key,int x, int y, t_fdfenv *env);
+int			loopachieved(t_fdfenv *env);
 void			right(t_fdfenv *env);
 void			down(t_fdfenv *env);
 void			up(t_fdfenv *env);
 void			left(t_fdfenv *env);
+void			center(t_fdfenv *env);
 void			lower(t_fdfenv *env);
 void			higher(t_fdfenv *env);
 void			zoom(t_fdfenv *env);
 void			dezoom(t_fdfenv *env);
 void			maprotate(t_fdfenv *env);
+void			mouserotate(t_fdfenv *env);
 void		drawpoint(t_fdfenv *env);
 void		project(t_fdfenv *env, t_point point, t_pixel *pixel);
 void		drawline(t_fdfenv *env, t_pixel a, t_pixel b);
