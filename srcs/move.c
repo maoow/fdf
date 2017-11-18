@@ -7,36 +7,12 @@ drawpoint(env);
 }
 void			up(t_fdfenv *env)
 {
-	int	i;
-	int	j;
-	i = 0;
-	while (i < env->mapsize.y)
-	{
-		j = 0;
-		while (j < env->mapsize.x)
-		{
-			env->map[i][j].z++;
-			j++;
-		}
-		i++;
-	}
+env->camera.a.y++;
 drawpoint(env);
 }
 void			down(t_fdfenv *env)
 {
-	int	i;
-	int	j;
-	i = 0;
-	while (i < env->mapsize.y)
-	{
-		j = 0;
-		while (j < env->mapsize.x)
-		{
-			env->map[i][j].z--;
-			j++;
-		}
-		i++;
-	}
+env->camera.a.y--;
 drawpoint(env);
 }
 void			right(t_fdfenv *env)
@@ -52,5 +28,17 @@ drawpoint(env);
 void			lower(t_fdfenv *env)
 {
 env->camera.a.z--;
+drawpoint(env);
+}
+void			zoom(t_fdfenv *env)
+{
+env->zoom++;
+drawpoint(env);
+}
+void			dezoom(t_fdfenv *env)
+{
+if (env->zoom > 1)
+env->zoom--;
+ft_printf("dezoom");
 drawpoint(env);
 }
