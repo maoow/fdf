@@ -4,27 +4,27 @@
 float	getxrotatetype(t_fdfenv *env)
 {
 	if (env->key == 117)
-		return (0.02);
+		return (0.2);
 	if (env->key == 105)
-		return (-0.02);
-	return (0);
-}
-
-float	getzrotatetype(t_fdfenv *env)
-{
-	if (env->key == 55)
-		return (0.02);
-	if (env->key == 56)
-		return (-0.02);
+		return (-0.2);
 	return (0);
 }
 
 float	getyrotatetype(t_fdfenv *env)
 {
+	if (env->key == 55)
+		return (0.2);
+	if (env->key == 56)
+		return (-0.2);
+	return (0);
+}
+
+float	getzrotatetype(t_fdfenv *env)
+{
 	if (env->key == 121)
-		return (0.02);
+		return (0.2);
 	if (env->key == 111)
-		return (-0.02);
+		return (-0.2);
 	return (0);
 }
 

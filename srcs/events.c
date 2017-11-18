@@ -39,7 +39,9 @@ int		g_key[K_NB] =
 	111,
 	55,
 	56,
-	105
+	105,
+	101,
+	114
 };
 void		(*g_keyf[K_NB])() =
 {
@@ -57,7 +59,9 @@ void		(*g_keyf[K_NB])() =
 	&maprotate,
 	&maprotate,
 	&maprotate,
-	&maprotate
+	&maprotate,
+	&harder,
+	&smoother
 };
 
 int			loopachieved(t_fdfenv *env)

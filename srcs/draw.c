@@ -3,9 +3,9 @@
 void		pixel_add(t_fdfenv *env, int x, int y, int color)
 {
 	if (x < env->width && x >= 0 && y < env->height && y >= 0)
-{
-	env->imgstr[x + y * env->width] = color;
-}
+	{
+		env->imgstr[x + y * env->width] = color;
+	}
 }
 void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
 {
@@ -24,18 +24,30 @@ void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
 	mod.y = 1;
 	target.x = b.x - a.x;
 	target.y = b.y - a.y;
+	//target.x *= env->smooth;
+	//target.y *= env->smooth;
 	if (target.x < 0)
 		dir.x = -1;
 	if (target.y < 0)
 		dir.y = -1;
 	if (abs(target.x) > abs(target.y) && abs(target.y))
-		mod.y = abs(target.x) / abs(target.y);
+	{
+		mod.y = round(abs(target.x) / abs(target.y));
+	}
 	else if (abs(target.x))
-		mod.x = abs(target.y) / abs(target.x);
-if (mod.x == 0)
+		mod.x = round(abs(target.y) / abs(target.x));
+	if (mod.x == 0)
+{
 		mod.x = 1;
-if (mod.y == 0)
+		mod.y++;
+}
+	if (mod.y == 0)
+{
 		mod.y = 1;
+mod.x++;
+}
+	//target.x /= env->smooth;
+	//target.y /= env->smooth;
 	while (target.x != pen.x || target.y != pen.y)
 	{
 		if (i % mod.x == 0 && pen.x != target.x)
@@ -68,17 +80,17 @@ void		drawpoint(t_fdfenv *env)
 			if (i < env->mapsize.y - 1)
 			{
 				project(env, env->map[i + 1][j], &tmp2);
-drawline(env, tmp,tmp2);
+				drawline(env, tmp,tmp2);
 			}
 			j++;
 			if (j < env->mapsize.x)
 			{
 				project(env, env->map[i][j], &tmp2);
-drawline(env, tmp,tmp2);
+				drawline(env, tmp,tmp2);
 			}
 		}
 		i++;
 	}
 	mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
-mlx_destroy_image(env->mlx, env->img);
+	mlx_destroy_image(env->mlx, env->img);
 }
