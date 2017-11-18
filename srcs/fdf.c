@@ -21,21 +21,20 @@ void			init_env(t_fdfenv *env)
 	env->width = 1200;
 	env->height = 700;
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
-	env->x = 20;
-	env->y = 20;
 	//env->img = mlx_new_image(env->mlx, env->width, env->height);
 	//env->imgstr= (unsigned int *)mlx_get_data_addr(env->img,&(bpp), &(s_l), &(endian));
 	//mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
 	env->camera.a.z = 2000;
-	env->zoom = 1;
+	env->zoom = 800 / env->mapsize.x;
 	env->top = 1;
+	env->key = 0;
 	env->smooth = 1;
 	env->camera.b.x = 10;
 	env->camera.b.y = 10;
 	env->camera.b.z = 0;
-	env->rotate.x = 0;
+	env->rotate.x = -1.2;
 	env->rotate.y = 0;
 	env->rotate.z = 0;
 }
@@ -82,8 +81,8 @@ int			main(int ac, char **av)
 	t_fdfenv env;
 
 	i = 0 ;
-	init_env(&env);
 	getmap(&env, av[1]);
+	init_env(&env);
 	drawpoint(&env);
 	mlx_key_hook(env.win, keypressed, &env);
 	mlx_mouse_hook(env.win, buttonpressed, &env);
