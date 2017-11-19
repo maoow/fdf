@@ -55,7 +55,7 @@ int	addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
 i++;
 	}
 	else
-		env->map[y][x].color = 0xFFFFFF - 0x100010 * z;
+		env->map[y][x].color = (z * 0xffffff) / 200 + 0x00ff00;
 		//env->map[y][x].color = 0xFFFFFF;
 	return (i);
 }
