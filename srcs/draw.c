@@ -41,25 +41,31 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 	double	b;
 	t_pixel	dir;
 
-		dir.x = -1;
+	dir.x = -1;
 	if (pb.x - pa.x > 0)
-	dir.x = 1;
-		dir.y = -1;
+		dir.x = 1;
+	dir.y = -1;
 	if (pb.y - pa.y > 0)
-	dir.y = 1;
+		dir.y = 1;
 	a = (double)(pb.y - pa.y) / (pb.x - pa.x);
 	b = pa.y - a * pa.x;
 	pen.x = pa.x;
-	while (pen.x * dir.x <= pb.x * dir.x)
+	pen.y = pa.y;
+	while (pen.x * dir.x < pb.x * dir.x)
 	{
 		pen.y = a * pen.x + b;
 		pixel_add(env, pen.x, pen.y,  (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
 		while ((dir.y * pen.y <= (a * (pen.x + dir.x) + b) * dir.y )  && (dir.y * pen.y <= pb.y * dir.y))
 		{
-			pen.y += dir.y;
 			pixel_add(env, pen.x, pen.y,  (0x888888 & (pa.color | pb.color))  | (pa.color & pb.color));
+			pen.y += dir.y;
 		}
 		pen.x += dir.x;
+	}
+	while (pen.y * dir.y <= pb.y * dir.y)
+	{
+		pixel_add(env, pen.x, pen.y,  (0x888888 & (pa.color | pb.color))  | (pa.color & pb.color));
+		pen.y += dir.y;
 	}
 	point_add(env, pa.x, pa.y, pb.color);
 }
