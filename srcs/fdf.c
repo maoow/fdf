@@ -11,6 +11,13 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "mlx_int.h"
+
+void	error()
+{
+	ft_printf("error\n");
+	exit(0);
+}
 
 void			init_env(t_fdfenv *env)
 {
@@ -48,7 +55,7 @@ void			getmap(t_fdfenv *env, char *path)
 
 	i = 0;
 	strmap = (char **)malloc(sizeof(char*));
-	if ((fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) > 0)
 	{
 		while (get_next_line(fd, &(strmap[i])) > 0)
 		{
@@ -69,8 +76,12 @@ void			getmap(t_fdfenv *env, char *path)
 			}
 			strmap[j] = NULL;
 		}
+		mapparse(env, strmap);
 	}
-	mapparse(env, strmap);
+	else
+		error();
+	if (env->mapsize.y == 0)
+		error();
 }
 
 int			main(int ac, char **av)
@@ -81,6 +92,8 @@ int			main(int ac, char **av)
 	t_fdfenv env;
 
 	i = 0 ;
+	if (ac == 1)
+		error();
 	getmap(&env, av[1]);
 	init_env(&env);
 	drawpoint(&env);
