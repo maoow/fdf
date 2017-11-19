@@ -66,10 +66,12 @@ void		(*g_keyf[K_NB])() =
 
 int			loopachieved(t_fdfenv *env)
 {
-if (env->key == 0)
-env->rotate.z += 0.001;
-	drawpoint(env);
-printf("x: %f y: %f z: %f\nzoom: %d\n\n", env->rotate.x, env->rotate.y, env->rotate.z,env->zoom);
+	if (env->key == 0)
+	{
+		env->rotate.z += 0.014 / env->zoom;
+		drawpoint(env);
+	}
+//	printf("x: %f y: %f z: %f\nzoom: %d\n\n", env->rotate.x, env->rotate.y, env->rotate.z,env->zoom);
 }
 int			buttonpressed(int key,int x,int y, t_fdfenv *env)
 {
@@ -93,12 +95,12 @@ int			keypressed(int key, t_fdfenv *env)
 
 	count = 0;
 	env->key = key;
-	while(count < K_NB)
-	{
-		if (key == g_key[count])
-			g_keyf[count](env);
+	while(count < K_NB && key != g_key[count])
 		count++;
-	}
+	if (count < K_NB)
+		g_keyf[count](env);
+	else
+		env->key = 0;
 }
 
 
