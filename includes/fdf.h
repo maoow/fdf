@@ -74,6 +74,7 @@ typedef struct	s_fdfenv
 int			keypressed(int key, t_fdfenv *env);
 int			buttonpressed(int key,int x, int y, t_fdfenv *env);
 int			loopachieved(t_fdfenv *env);
+void	error();
 void			right(t_fdfenv *env);
 void			down(t_fdfenv *env);
 void			up(t_fdfenv *env);
