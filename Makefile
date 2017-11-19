@@ -13,13 +13,14 @@
 NAME = fdf
 
 CC = gcc
-CFLAGS = -framework OpenGL -framework AppKit -lmlx
+CFLAGS = -framework OpenGL -framework AppKit -lmlx -lXext -lX11
+LFLAGS = -IGL -IGLUT -lXext -lX11 -lm
 DEBUG =
 DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
-CPPFLAGS = -iquote includes -iquote $(LIB_PATH)$(INC)
+CPPFLAGS = -iquote includes/minilibx -iquote includes -iquote $(LIB_PATH)$(INC)
 
 SRC_PATH = srcs/
-SRC_NAME = fdf.c								\
+SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c
 
 OBJ_PATH = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -27,18 +28,18 @@ SRCS = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = includes/
 LIB_PATH := libft/
-LIB := $(LIB_PATH)libftprintf.a  $(INC)mlx/libmlx.a
+LIB := $(LIB_PATH)libftprintf.a  $(INC)minilibx/libmlx.a
 LIB_INCLUDE := $(LIB_PATH)$(INC)libft.h			\
 				$(LIB_PATH)$(INC)get_next_line.h\
 				$(LIB_PATH)$(INC)ft_printf.h \
-				$(INC)mlx/mlx.h
+				$(INC)minilibx/mlx.h
 HEADER := $(LIB_INCLUDE)						\
 		 includes/fdf.h
 
 all: lib $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(DEBUG) $(CPPFLAGS) $(OBJS) $(LIB) $(CFLAGS)  -o $(NAME)
+	$(CC) $(DEBUG) $(OBJS) $(CPPFLAGS) $(LIB) $(LFLAGS)  -o $(NAME)
 	@echo "\033[32m$(NAME) udpated\033[0m"
 
 .PHONY:lib
@@ -51,7 +52,7 @@ $(OBJ_PATH):
 	@mkdir -p $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER) $(LIB)
-	$(CC) $(CFLAGS) $(DEBUG) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(LFLAGS) $(DEBUG) $(CPPFLAGS) -c $< -o $@
 
 .PHONY:clean
 clean:
