@@ -4,7 +4,7 @@ void			mouserotate(t_fdfenv *env)
 {
 	if (env->key == 3)
 	{
-		env->rotate.y -= ((float)env->mouse.x - (float)env->width / 2) / env->width;
+		env->rotate.z -= ((float)env->mouse.x - (float)env->width / 2) / env->width;
 		env->rotate.x += ((float)env->mouse.y - (float)env->height / 2) / env->height;
 		drawpoint(env);
 	}
