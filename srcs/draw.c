@@ -34,7 +34,36 @@ void		pixel_add(t_fdfenv *env, int x, int y, int color)
 		env->imgstr[x + y * env->width] = color;
 	}
 }
-void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
+void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
+{
+	t_pixel	pen;
+	double	a;
+	double	b;
+	t_pixel	dir;
+
+		dir.x = -1;
+	if (pb.x - pa.x > 0)
+	dir.x = 1;
+		dir.y = -1;
+	if (pb.y - pa.y > 0)
+	dir.y = 1;
+	a = (double)(pb.y - pa.y) / (pb.x - pa.x);
+	b = pa.y - a * pa.x;
+	pen.x = pa.x;
+	while (pen.x * dir.x <= pb.x * dir.x)
+	{
+		pen.y = a * pen.x + b;
+		pixel_add(env, pen.x, pen.y,  (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+		while ((dir.y * pen.y <= (a * (pen.x + dir.x) + b) * dir.y )  && (dir.y * pen.y <= pb.y * dir.y))
+		{
+			pen.y += dir.y;
+			pixel_add(env, pen.x, pen.y,  (0x888888 & (pa.color | pb.color))  | (pa.color & pb.color));
+		}
+		pen.x += dir.x;
+	}
+	point_add(env, pa.x, pa.y, pb.color);
+}
+void		ddrawline(t_fdfenv *env, t_pixel a, t_pixel b)
 {
 	t_pixel	pen;
 	t_pixel	target;
@@ -80,7 +109,6 @@ void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
 		i++;
 		pixel_add(env, a.x + pen.x, a.y + pen.y,  (a.color | b.color) );
 	}
-	point_add(env, a.x + pen.x, a.y + pen.y, b.color);
 }
 
 void		drawpoint(t_fdfenv *env)
