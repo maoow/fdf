@@ -78,9 +78,9 @@ void		drawline(t_fdfenv *env, t_pixel a, t_pixel b)
 		if (i % mod.y == 0 && pen.y != target.y)
 			pen.y += dir.y;
 		i++;
-		pixel_add(env, a.x + pen.x, a.y + pen.y, 0x00FFFFFF);
+		pixel_add(env, a.x + pen.x, a.y + pen.y,  (a.color | b.color) );
 	}
-	point_add(env, a.x + pen.x, a.y + pen.y, 0x0000FF00);
+	point_add(env, a.x + pen.x, a.y + pen.y, b.color);
 }
 
 void		drawpoint(t_fdfenv *env)

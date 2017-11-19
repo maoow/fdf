@@ -29,6 +29,7 @@ typedef struct	s_point
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }		t_point;
 
 typedef struct	s_vertex
@@ -41,6 +42,7 @@ typedef struct	s_pixel
 {
 	int	x;
 	int	y;
+	int	color;
 }		t_pixel;
 
 typedef struct	s_line
@@ -54,10 +56,10 @@ typedef struct	s_fdfenv
 	void		*win;
 	size_t		width;
 	size_t		height;
-	size_t		x;
-	size_t		y;
 	size_t		top;
+	size_t		timer;
 	size_t		zoom;
+	int		pointsize;
 	t_vertex	camera;
 	t_point		**map;
 	t_point		mapsize;

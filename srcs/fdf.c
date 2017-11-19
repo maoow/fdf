@@ -27,8 +27,8 @@ void			init_env(t_fdfenv *env)
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
 	env->camera.a.z = 2000;
-	env->zoom = 800 / env->mapsize.x;
-	env->top = 1;
+	env->zoom = 400 / env->mapsize.x + 1;
+	env->top = 6;
 	env->key = 0;
 	env->smooth = 1;
 	env->camera.b.x = 10;
