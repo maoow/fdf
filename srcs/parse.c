@@ -72,11 +72,6 @@ void	initmap(t_fdfenv *env)
 		i++;
 	}
 }
-void	error()
-{
-	ft_printf("error\n");
-	exit(0);
-}
 
 void	mapsize(t_fdfenv *env, char **strmap)
 {
@@ -134,6 +129,6 @@ void	mapparse(t_fdfenv *env, char **strmap)
 			}
 		}
 		j++;
-ft_printf("%d %d\n",x, env->mapsize.x);
+//ft_printf("%d %d\n",x, env->mapsize.x);
 	}
 }
