@@ -43,8 +43,8 @@ int	addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
 
 	i = 0;
 	z = ft_atoi(str);
-	env->map[y][x].x = (x - env->mapsize.x / 2) * 10;
-	env->map[y][x].y = (y - env->mapsize.y / 2) * 10;
+	env->map[y][x].x = (x - env->mapsize.x / 2) * (2000 / env->mapsize.x);
+	env->map[y][x].y = (y - env->mapsize.y / 2) * (2000 / env->mapsize.x);
 	env->map[y][x].z = z * 2;
 	while (ft_isdigit(str[i]) || str[i] == '-')
 		i++;

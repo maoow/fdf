@@ -34,7 +34,7 @@ void			init_env(t_fdfenv *env)
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
 	env->camera.a.z = 2000;
-	env->zoom = 400 / env->mapsize.x + 1;
+	env->zoom = 100 / env->mapsize.x + 1;
 	env->top = 6;
 	env->key = 0;
 	env->smooth = 1;
@@ -43,7 +43,7 @@ void			init_env(t_fdfenv *env)
 	env->camera.b.z = 0;
 	env->rotate.x = -1.2;
 	env->rotate.y = 0;
-	env->rotate.z = 0;
+	env->rotate.z = -1.16;
 }
 void			getmap(t_fdfenv *env, char *path)
 {
