@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 #include "get_next_line.h"
-#define K_NB 17
+#define K_NB 19
 #define B_NB 5
 
 
@@ -56,6 +56,8 @@ typedef struct	s_fdfenv
 	void		*win;
 	size_t		width;
 	size_t		height;
+	int		x;
+	int		y;
 	size_t		top;
 	size_t		timer;
 	size_t		zoom;
@@ -80,6 +82,9 @@ void			down(t_fdfenv *env);
 void			up(t_fdfenv *env);
 void			left(t_fdfenv *env);
 void			center(t_fdfenv *env);
+void			selectpoint(t_fdfenv *env);
+void			lowerpoint(t_fdfenv *env);
+void			higherpoint(t_fdfenv *env);
 void			lower(t_fdfenv *env);
 void			higher(t_fdfenv *env);
 void			zoom(t_fdfenv *env);
@@ -90,4 +95,5 @@ void			smoother(t_fdfenv *env);
 void			harder(t_fdfenv *env);
 void		drawpoint(t_fdfenv *env);
 void		project(t_fdfenv *env, t_point point, t_pixel *pixel);
+void	save(t_fdfenv *env);
 void		drawline(t_fdfenv *env, t_pixel a, t_pixel b);
