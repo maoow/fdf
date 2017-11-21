@@ -67,7 +67,6 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 		pixel_add(env, pen.x, pen.y,  (0x888888 & (pa.color | pb.color))  | (pa.color & pb.color));
 		pen.y += dir.y;
 	}
-	point_add(env, pa.x, pa.y, pb.color);
 }
 void		ddrawline(t_fdfenv *env, t_pixel a, t_pixel b)
 {
@@ -140,6 +139,10 @@ void		drawpoint(t_fdfenv *env)
 				project(env, env->map[i + 1][j], &tmp2);
 				drawline(env, tmp,tmp2);
 			}
+			if (i == env->x && j == env->y)
+				tmp.color = 0xFF0000;
+			point_add(env, tmp.x, tmp.y, tmp.color);
+				tmp.color = env->map[i][j].color;
 			j++;
 			if (j < env->mapsize.x)
 			{
