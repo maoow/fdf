@@ -38,12 +38,11 @@ void			init_env(t_fdfenv *env)
 	env->top = 6;
 	env->key = 0;
 	env->smooth = 1;
-	env->camera.b.x = 10;
-	env->camera.b.y = 10;
-	env->camera.b.z = 0;
 	env->rotate.x = -1.2;
 	env->rotate.y = 0;
 	env->rotate.z = -1.16;
+	env->x = 1;
+	env->y = 1;
 }
 void			getmap(t_fdfenv *env, char *path)
 {
@@ -77,6 +76,7 @@ void			getmap(t_fdfenv *env, char *path)
 			strmap[j] = NULL;
 		}
 		mapparse(env, strmap);
+		close(fd);
 	}
 	else
 		error();
