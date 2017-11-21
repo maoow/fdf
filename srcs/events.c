@@ -1,8 +1,9 @@
 #include "fdf.h"
 
 
-void			quit()
+void			quit(t_fdfenv *env)
 {
+save(env);
 	exit(0);
 }
 
@@ -19,7 +20,7 @@ void		(*g_buttonf[B_NB])() =
 	&mouserotate,
 	&zoom,
 	&dezoom,
-	&center,
+	&selectpoint,
 	&right
 };
 
@@ -41,6 +42,8 @@ int		g_key[K_NB] =
 	56,
 	105,
 	101,
+	97,
+	115,
 	114
 };
 void		(*g_keyf[K_NB])() =
@@ -61,14 +64,21 @@ void		(*g_keyf[K_NB])() =
 	&maprotate,
 	&maprotate,
 	&harder,
+	&higherpoint,
+	&lowerpoint,
 	&smoother
 };
 
+int			loop(int key,int x,int y, t_fdfenv *env)
+{
+	printf("x: %f y: %f z: %f\nzoom: %d\n\n", env->rotate.x, env->rotate.y, env->rotate.z,env->zoom);
+return (0);
+}
 int			loopachieved(t_fdfenv *env)
 {
 	if (env->key == 0)
 	{
-		env->rotate.z += 0.014 / env->zoom;
+		env->rotate.z += 0.02 / env->zoom;
 		drawpoint(env);
 	}
 //	printf("x: %f y: %f z: %f\nzoom: %d\n\n", env->rotate.x, env->rotate.y, env->rotate.z,env->zoom);
@@ -87,6 +97,7 @@ int			buttonpressed(int key,int x,int y, t_fdfenv *env)
 			g_buttonf[count](env);
 		count++;
 	}
+drawpoint(env);
 }
 
 int			keypressed(int key, t_fdfenv *env)
@@ -94,6 +105,7 @@ int			keypressed(int key, t_fdfenv *env)
 	size_t		count;
 
 	count = 0;
+//ft_printf("yo");
 	env->key = key;
 	while(count < K_NB && key != g_key[count])
 		count++;
@@ -101,6 +113,8 @@ int			keypressed(int key, t_fdfenv *env)
 		g_keyf[count](env);
 	else
 		env->key = 0;
+ft_printf("%d\n", key);
+drawpoint(env);
 }
 
 
