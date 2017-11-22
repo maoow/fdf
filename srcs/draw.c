@@ -70,8 +70,7 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 	while (pen.x * dir.x < pb.x * dir.x)
 	{
 		pen.y = a * pen.x + b;
-		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) |
-				(pa.color & pb.color));
+		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
 		while ((dir.y * pen.y <= (a * (pen.x + dir.x) + b) * dir.y))
 		{
 			pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
@@ -81,7 +80,7 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 	}
 	while (pen.y * dir.y <= pb.y * dir.y)
 	{
-		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+			pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
 		pen.y += dir.y;
 	}
 }
@@ -107,6 +106,23 @@ void		drawpoints(t_fdfenv *env, int i, int j)
 	point_add(env, tmp.x, tmp.y, tmp.color);
 	tmp.color = env->map[i][j].color;
 }
+void background(t_fdfenv *env)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < env->width)
+	{
+		j = 0;
+		while (j < env->height)
+		{
+pixel_add(env, i, j, env->color);
+			j++;
+		}
+		i++;
+	}
+}
 
 void		drawmap(t_fdfenv *env)
 {
@@ -116,6 +132,7 @@ void		drawmap(t_fdfenv *env)
 	i = 0;
 	env->img = mlx_new_image(env->mlx, env->width, env->height);
 	env->imgstr = (unsigned int *)mlx_get_data_addr(env->img, &(env->bpp), &(env->s_l), &(env->endian));
+	background(env);
 	while (i < env->mapsize.y)
 	{
 		j = 0;

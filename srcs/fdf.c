@@ -25,8 +25,8 @@ void			init_env(t_fdfenv *env)
 	int	endian;
 
 	env->mlx = mlx_init();
-	env->width = 2400;
-	env->height = 1000;
+	env->width = 1240;
+	env->height = 600;
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
@@ -34,12 +34,14 @@ void			init_env(t_fdfenv *env)
 	env->zoom = 100 / env->mapsize.x + 1;
 	env->top = 1;
 	env->key = -1;
-	env->pointsize = 1;
+	env->speed = 0.02;
+	env->pointsize = 0;
 	env->rotate.x = -1.2;
 	env->rotate.y = 0;
 	env->rotate.z = -1.16;
-	env->x = 1;
-	env->y = 1;
+	env->x = -1;
+	env->color = 0x001100;
+	env->y = -1;
 }
 
 static void		addline(char ***strmap, int i)

@@ -14,11 +14,13 @@
 
 void			higherpoint(t_fdfenv *env)
 {
+if (env->y >= 0 && env->y <= env->mapsize.y && env->x >= 0 && env->x <= env->mapsize.x)
 	env->map[env->x][env->y].z++;
 }
 
 void			lowerpoint(t_fdfenv *env)
 {
+if (env->y >= 0 && env->y <= env->mapsize.y && env->x >= 0 && env->x <= env->mapsize.x)
 	env->map[env->x][env->y].z--;
 }
 
@@ -62,7 +64,7 @@ void			selectpoint(t_fdfenv *env)
 
 void			dpointsize(t_fdfenv *env)
 {
-	if (env->pointsize >= 1)
+	if (env->pointsize >= 0)
 		env->pointsize--;
 }
 

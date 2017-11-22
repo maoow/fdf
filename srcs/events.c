@@ -53,7 +53,13 @@ int			g_key[K_NB] =
 	k_a,
 	k_s,
 	k_e,
-	k_r
+	k_r,
+	k_c,
+	k_v,
+	k_x,
+	k_z,
+	k_point,
+	k_slash
 };
 void		(*g_keyf[K_NB])() =
 {
@@ -76,14 +82,20 @@ void		(*g_keyf[K_NB])() =
 	&higherpoint,
 	&lowerpoint,
 	&dpointsize,
-	&ipointsize
+	&ipointsize,
+	&ispeed,
+	&dspeed,
+	&icolor,
+	&dcolor,
+	&ibgcolor,
+	&dbgcolor
 };
 
 int			loopachieved(t_fdfenv *env)
 {
 	if (env->key == -1)
 	{
-		env->rotate.z += 0.02 / env->zoom;
+		env->rotate.z += env->speed / env->zoom;
 		drawmap(env);
 	}
 	return (0);
@@ -100,7 +112,7 @@ int			buttonpressed(int key, int x, int y, t_fdfenv *env)
 	while (count < B_NB && key != g_button[count])
 		count++;
 	if (count < B_NB)
-			g_buttonf[count](env);
+		g_buttonf[count](env);
 	else
 		ft_printf("%d\n", key);
 	drawmap(env);
@@ -118,7 +130,10 @@ int			keypressed(int key, t_fdfenv *env)
 	if (count < K_NB)
 		g_keyf[count](env);
 	else
+	{
+		ft_printf("%d\n", key);
 		env->key = -1;
+	}
 	drawmap(env);
 	return (0);
 }
