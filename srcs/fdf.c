@@ -6,15 +6,15 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 11:45:50 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 13:21:48 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void			error(void)
+void			error(char *str)
 {
-	ft_printf("error\n");
+	ft_printf("error: %s\n", str);
 	exit(0);
 }
 
@@ -86,9 +86,12 @@ void			getmap(t_fdfenv *env, char *path)
 		close(fd);
 	}
 	else
-		error();
+		error("file not supported");
+	while (--i)
+		free(strmap[i]);
+	free(strmap);
 	if (env->mapsize.y == 0)
-		error();
+		error("empty map");
 }
 
 int				main(int ac, char **av)
@@ -100,7 +103,7 @@ int				main(int ac, char **av)
 
 	i = 0;
 	if (ac == 1)
-		error();
+		error("not arg");
 	getmap(&env, av[1]);
 	init_env(&env);
 	drawmap(&env);

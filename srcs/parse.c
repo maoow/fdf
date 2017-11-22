@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:22 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 10:05:59 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 13:29:41 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int		addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
 		while (str[i] && str[i] != ' ')
 			i++;
 	}
-	else
+	else if (!str[i] || str[i] == ' ')
 		env->map[y][x].color = (z * 0xffffff) / 200 + 0x00ff00;
+	else
+		error("format error");
 	return (i);
 }
 
@@ -105,7 +107,7 @@ void	mapsize(t_fdfenv *env, char **strmap)
 				i++;
 		}
 		if (j && env->mapsize.x != x)
-			error();
+			error("not a rectangular map");
 		env->mapsize.x = x;
 		j++;
 	}
