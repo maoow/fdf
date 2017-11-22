@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 11:36:10 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:43:40 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int			buttonpressed(int key, int x, int y, t_fdfenv *env)
 			g_buttonf[count](env);
 	else
 		ft_printf("%d\n", key);
-		ft_printf("%d\n", key);
 	drawmap(env);
 	return (0);
 }
@@ -120,7 +119,6 @@ int			keypressed(int key, t_fdfenv *env)
 		g_keyf[count](env);
 	else
 		env->key = -1;
-//	ft_printf("%d\n", key);
 	drawmap(env);
 	return (0);
 }

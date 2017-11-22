@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 11:28:46 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:45:50 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void			init_env(t_fdfenv *env)
 	int	endian;
 
 	env->mlx = mlx_init();
-	env->width = 1200;
-	env->height = 700;
+	env->width = 2400;
+	env->height = 1000;
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
