@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:01 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 10:10:39 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:28:18 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ void		pixel_add(t_fdfenv *env, int x, int y, int color)
 	}
 }
 
+void	setpen(t_pixel *pen, t_pixel *dir, t_pixel pa, t_pixel pb)
+{
+	dir->x = -1;
+	if (pb.x - pa.x > 0)
+		dir->x = 1;
+	dir->y = -1;
+	if (pb.y - pa.y > 0)
+		dir->y = 1;
+	pen->x = pa.x;
+	pen->y = pa.y;
+}
+
 void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 {
 	t_pixel	pen;
@@ -52,39 +64,29 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 	double	b;
 	t_pixel	dir;
 
-	dir.x = -1;
-	if (pb.x - pa.x > 0)
-		dir.x = 1;
-	dir.y = -1;
-	if (pb.y - pa.y > 0)
-		dir.y = 1;
+	setpen(&pen, &dir, pa, pb);
 	a = (double)(pb.y - pa.y) / (pb.x - pa.x);
 	b = pa.y - a * pa.x;
-	pen.x = pa.x;
-	pen.y = pa.y;
 	while (pen.x * dir.x < pb.x * dir.x)
 	{
 		pen.y = a * pen.x + b;
 		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) |
 				(pa.color & pb.color));
-		while ((dir.y * pen.y <= (a * (pen.x + dir.x) + b) * dir.y)
-				&& (dir.y * pen.y <= pb.y * dir.y))
+		while ((dir.y * pen.y <= (a * (pen.x + dir.x) + b) * dir.y))
 		{
-			pixel_add(env, pen.x, pen.y,
-					(0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+			pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
 			pen.y += dir.y;
 		}
 		pen.x += dir.x;
 	}
 	while (pen.y * dir.y <= pb.y * dir.y)
 	{
-		pixel_add(env, pen.x, pen.y,
-				(0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
 		pen.y += dir.y;
 	}
 }
 
-void		drawpoint(t_fdfenv *env)
+void		drawmap(t_fdfenv *env)
 {
 	int		i;
 	int		j;
