@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 12:55:51 by cbinet            #+#    #+#              #
-#    Updated: 2017/11/22 10:19:49 by cbinet           ###   ########.fr        #
+#    Updated: 2017/11/22 15:44:15 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = fdf
 CC = gcc
 CFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
 LFLAGS = -IGL -IGLUT -lXext -lX11 -lmlx -lXext
-DEBUG =
+DEBUG = -flto -ofast -o2
 DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
 CPPFLAGS = -iquote includes/mlx -iquote includes -iquote $(LIB_PATH)$(INC)
 
@@ -45,6 +45,7 @@ $(NAME): $(OBJS)
 .PHONY:lib
 lib:
 	@make -C libft
+	@make -C includes/mlx
 	
 $(OBJS): | $(OBJ_PATH)
 
@@ -57,11 +58,13 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER) $(LIB)
 .PHONY:clean
 clean:
 	@make clean -C libft
+	@make clean -C includes/mlx
 	@rm -rf $(OBJ_PATH)
 	@echo "\033[31mObjects files removed.\033[0m"
 
 fclean: clean
 	@make fclean -C libft
+	@make fclean -C includes/mlx
 	@rm -rf $(NAME)
 	@echo "\033[31mBinary names removed.\033[0m"
 
