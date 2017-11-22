@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/22 09:26:22 by cbinet            #+#    #+#             */
+/*   Updated: 2017/11/22 10:05:59 by cbinet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-int	col(char *str)
+int		col(char *str)
 {
 	size_t	i;
 	size_t	c;
+
 	i = 0;
 	c = 0;
-	while ((ft_isdigit(str[i])
-|| (str[i] >= 'A' && str[i] <= 'F')
-|| (str[i] >= 'a' && str[i] <= 'f')
-))
+	while ((ft_isdigit(str[i]) || (str[i] >= 'A' && str[i] <= 'F')
+				|| (str[i] >= 'a' && str[i] <= 'f')))
 	{
 		if (str[i] <= '9')
 			c += str[i] - '0';
@@ -20,13 +31,13 @@ int	col(char *str)
 		c *= 16;
 		i++;
 	}
-	//if (i == 6)
 	return (c);
 }
 
 void	getcolor(t_point *point, char *str)
 {
 	size_t	i;
+
 	i = 0;
 	while (str[i] == ',' || ft_isdigit(str[i]))
 		i++;
@@ -36,9 +47,9 @@ void	getcolor(t_point *point, char *str)
 		exit(0);
 }
 
-int	addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
+int		addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
 {
-	int	z;
+	int		z;
 	size_t	i;
 
 	i = 0;
@@ -51,12 +62,11 @@ int	addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
 	if (str[i] == ',')
 	{
 		getcolor(&env->map[y][x], str + i);
-	while (str[i] && str[i] != ' ')
-i++;
+		while (str[i] && str[i] != ' ')
+			i++;
 	}
 	else
 		env->map[y][x].color = (z * 0xffffff) / 200 + 0x00ff00;
-		//env->map[y][x].color = 0xFFFFFF;
 	return (i);
 }
 
@@ -88,22 +98,18 @@ void	mapsize(t_fdfenv *env, char **strmap)
 		{
 			if (strmap[j][i] && strmap[j][i] != ' ')
 				x++;
-			//while (strmap[j][i] && (ft_isdigit(strmap[j][i]) || strmap[j][i] == '-' || 
-//(strmap[j][i] >= 'A' && strmap[j][i] <= 'F') || strmap[j][i] == 'x' || strmap[j][i] == ','
-//))
-while (strmap[j][i] && strmap[j][i] != ' ')
+			while (strmap[j][i] && strmap[j][i] != ' ')
 				i++;
-			while (strmap[j][i] && (!ft_isdigit(strmap[j][i]) && strmap[j][i] != '-'))
+			while (strmap[j][i] && (!ft_isdigit(strmap[j][i])
+						&& strmap[j][i] != '-'))
 				i++;
 		}
 		if (j && env->mapsize.x != x)
 			error();
-		if (!j)
-			env->mapsize.x = x;
+		env->mapsize.x = x;
 		j++;
 	}
-	env->mapsize.y = j ;
-	initmap(env);
+	env->mapsize.y = j;
 }
 
 void	mapparse(t_fdfenv *env, char **strmap)
@@ -114,13 +120,15 @@ void	mapparse(t_fdfenv *env, char **strmap)
 
 	j = 0;
 	mapsize(env, strmap);
+	initmap(env);
 	while (strmap[j])
 	{
 		x = 0;
 		i = 0;
 		while (strmap[j][i])
 		{
-			while (strmap[j][i] && (!ft_isdigit(strmap[j][i]) && strmap[j][i] != '-'))
+			while (strmap[j][i] && (!ft_isdigit(strmap[j][i])
+						&& strmap[j][i] != '-'))
 				i++;
 			if (strmap[j][i])
 			{
@@ -129,6 +137,5 @@ void	mapparse(t_fdfenv *env, char **strmap)
 			}
 		}
 		j++;
-//ft_printf("%d %d\n",x, env->mapsize.x);
 	}
 }

@@ -6,14 +6,13 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/17 13:42:17 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 09:44:43 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx_int.h"
 
-void	error()
+void			error(void)
 {
 	ft_printf("error\n");
 	exit(0);
@@ -24,31 +23,30 @@ void			init_env(t_fdfenv *env)
 	int	bpp;
 	int	s_l;
 	int	endian;
+
 	env->mlx = mlx_init();
 	env->width = 1200;
 	env->height = 700;
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
-	//env->img = mlx_new_image(env->mlx, env->width, env->height);
-	//env->imgstr= (unsigned int *)mlx_get_data_addr(env->img,&(bpp), &(s_l), &(endian));
-	//mlx_put_image_to_window(env->mlx,env->win,env->img,0,0);
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
 	env->camera.a.z = 2000;
 	env->zoom = 100 / env->mapsize.x + 1;
-	env->top = 6;
-	env->key = 0;
-	env->smooth = 1;
+	env->top = 1;
+	env->key = -1;
+	env->pointsize = 1;
 	env->rotate.x = -1.2;
 	env->rotate.y = 0;
 	env->rotate.z = -1.16;
 	env->x = 1;
 	env->y = 1;
 }
+
 void			getmap(t_fdfenv *env, char *path)
 {
-	int fd;
-	int	i;
-	int	j;
+	int		fd;
+	int		i;
+	int		j;
 	char	**strmap;
 	char	**strmap2;
 
@@ -84,14 +82,14 @@ void			getmap(t_fdfenv *env, char *path)
 		error();
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	void	*mlx;
-	void	*win;
-	size_t	i;
-	t_fdfenv env;
+	void		*mlx;
+	void		*win;
+	size_t		i;
+	t_fdfenv	env;
 
-	i = 0 ;
+	i = 0;
 	if (ac == 1)
 		error();
 	getmap(&env, av[1]);
