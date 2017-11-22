@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:54 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 11:36:34 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 15:47:16 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,3 +129,4 @@ void			project(t_fdfenv *env, t_point point, t_pixel *pixel);
 void			save(t_fdfenv *env);
 void			drawline(t_fdfenv *env, t_pixel a, t_pixel b);
 void			mapparse(t_fdfenv *env, char **strmap);
+void			rotate(t_point *point, t_fpoint r);
