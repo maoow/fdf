@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 10:15:15 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:36:10 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@ void		quit(t_fdfenv *env)
 
 int			g_button[B_NB] =
 {
-	3,
+	2,
 	4,
 	5,
-	1,
-	108
+	1
 };
 void		(*g_buttonf[B_NB])() =
 {
 	&mouserotate,
 	&zoom,
 	&dezoom,
-	&selectpoint,
-	&right
+	&selectpoint
 };
 
 int			g_key[K_NB] =
@@ -86,8 +84,9 @@ int			loopachieved(t_fdfenv *env)
 	if (env->key == -1)
 	{
 		env->rotate.z += 0.02 / env->zoom;
-		drawpoint(env);
+		drawmap(env);
 	}
+	return (0);
 }
 
 int			buttonpressed(int key, int x, int y, t_fdfenv *env)
@@ -98,13 +97,14 @@ int			buttonpressed(int key, int x, int y, t_fdfenv *env)
 	env->mouse.x = x;
 	env->mouse.y = y;
 	env->key = key;
-	while (count < B_NB)
-	{
-		if (key == g_button[count])
-			g_buttonf[count](env);
+	while (count < B_NB && key != g_button[count])
 		count++;
-	}
-	drawpoint(env);
+	if (count < B_NB)
+			g_buttonf[count](env);
+	else
+		ft_printf("%d\n", key);
+		ft_printf("%d\n", key);
+	drawmap(env);
 	return (0);
 }
 
@@ -120,6 +120,7 @@ int			keypressed(int key, t_fdfenv *env)
 		g_keyf[count](env);
 	else
 		env->key = -1;
-	ft_printf("%d\n", key);
-	drawpoint(env);
+//	ft_printf("%d\n", key);
+	drawmap(env);
+	return (0);
 }
