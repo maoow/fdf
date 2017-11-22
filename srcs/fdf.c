@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 09:44:43 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:28:46 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,36 @@ void			init_env(t_fdfenv *env)
 	env->y = 1;
 }
 
+static void		addline(char ***strmap, int i)
+{
+	char	**strmap2;
+	int		j;
+
+	strmap2 = (char **)malloc(i * sizeof(char *));
+	j = 0;
+	while (j < i)
+	{
+		strmap2[j] = (*strmap)[j];
+		j++;
+	}
+	free(*strmap);
+	*strmap = (char **)malloc((i + 1) * sizeof(char *));
+	j = 0;
+	while (j < i)
+	{
+		(*strmap)[j] = strmap2[j];
+		j++;
+	}
+	free(strmap2);
+	(*strmap)[j] = NULL;
+}
+
 void			getmap(t_fdfenv *env, char *path)
 {
 	int		fd;
 	int		i;
 	int		j;
 	char	**strmap;
-	char	**strmap2;
 
 	i = 0;
 	strmap = (char **)malloc(sizeof(char*));
@@ -57,21 +80,7 @@ void			getmap(t_fdfenv *env, char *path)
 		while (get_next_line(fd, &(strmap[i])) > 0)
 		{
 			i++;
-			strmap2 = (char **)malloc(i * sizeof(char*));
-			j = 0;
-			while (j < i)
-			{
-				strmap2[j] = strmap[j];
-				j++;
-			}
-			strmap = (char **)malloc((i + 1) * sizeof(char*));
-			j = 0;
-			while (j < i)
-			{
-				strmap[j] = strmap2[j];
-				j++;
-			}
-			strmap[j] = NULL;
+			addline(&strmap, i);
 		}
 		mapparse(env, strmap);
 		close(fd);
@@ -94,7 +103,7 @@ int				main(int ac, char **av)
 		error();
 	getmap(&env, av[1]);
 	init_env(&env);
-	drawpoint(&env);
+	drawmap(&env);
 	mlx_key_hook(env.win, keypressed, &env);
 	mlx_mouse_hook(env.win, buttonpressed, &env);
 	mlx_loop_hook(env.mlx, loopachieved, &env);
