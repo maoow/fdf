@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 13:21:48 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 16:07:34 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void			getmap(t_fdfenv *env, char *path)
 			i++;
 			addline(&strmap, i);
 		}
+		if (i == 0)
+			error("file not supported");
 		mapparse(env, strmap);
 		close(fd);
 	}
