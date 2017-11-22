@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:54 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 10:00:24 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:36:34 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 #include "get_next_line.h"
 #define K_NB 20
-#define B_NB 5
+#define B_NB 4
 
 
 #define k_q 12
@@ -104,10 +104,10 @@ typedef struct	s_fdfenv
 
 }	t_fdfenv;
 
-int			keypressed(int key, t_fdfenv *env);
-int			buttonpressed(int key,int x, int y, t_fdfenv *env);
-int			loopachieved(t_fdfenv *env);
-void	error();
+int				keypressed(int key, t_fdfenv *env);
+int				buttonpressed(int key,int x, int y, t_fdfenv *env);
+int				loopachieved(t_fdfenv *env);
+void			error();
 void			right(t_fdfenv *env);
 void			down(t_fdfenv *env);
 void			up(t_fdfenv *env);
@@ -124,7 +124,8 @@ void			maprotate(t_fdfenv *env);
 void			mouserotate(t_fdfenv *env);
 void			ipointsize(t_fdfenv *env);
 void			dpointsize(t_fdfenv *env);
-void		drawpoint(t_fdfenv *env);
-void		project(t_fdfenv *env, t_point point, t_pixel *pixel);
-void	save(t_fdfenv *env);
-void		drawline(t_fdfenv *env, t_pixel a, t_pixel b);
+void			drawmap(t_fdfenv *env);
+void			project(t_fdfenv *env, t_point point, t_pixel *pixel);
+void			save(t_fdfenv *env);
+void			drawline(t_fdfenv *env, t_pixel a, t_pixel b);
+void			mapparse(t_fdfenv *env, char **strmap);
