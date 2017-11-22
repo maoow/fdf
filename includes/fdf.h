@@ -10,17 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <GLUT/glut.h>
 #include "mlx.h"
 #include "ft_printf.h"
 #include "libft.h"
 #include "get_next_line.h"
-#define K_NB 20
+#define K_NB 26
 #define B_NB 4
 
-
+/*
 #define k_q 12
 #define k_esc 53
 #define k_h 4
@@ -41,6 +38,34 @@
 #define k_s 1
 #define k_e 14
 #define k_r 15
+*/
+
+#define k_q 113
+#define k_esc 65307
+#define k_h 104
+#define k_j 106
+#define k_k 107
+#define k_l 108
+#define k_m 109
+#define k_f 102
+#define k_d 100
+#define k_comma 44
+#define k_y 121
+#define k_u 117
+#define k_i 105
+#define k_o 111
+#define k_7 55
+#define k_8 56
+#define k_a 97
+#define k_s 115
+#define k_e 101
+#define k_r 114
+#define k_c 99
+#define k_v 118
+#define k_z 122
+#define k_x 120
+#define k_point 46
+#define k_slash 47
 
 
 typedef struct	s_fpoint
@@ -81,6 +106,7 @@ typedef struct	s_fdfenv
 	void		*win;
 	size_t		width;
 	size_t		height;
+	double		speed;
 	int		x;
 	int		y;
 	size_t		top;
@@ -96,6 +122,7 @@ typedef struct	s_fdfenv
 	int		key;
 	size_t		smooth;
 	t_pixel		mouse;
+	int		color;
 	
 
 	int		bpp;
@@ -130,3 +157,9 @@ void			save(t_fdfenv *env);
 void			drawline(t_fdfenv *env, t_pixel a, t_pixel b);
 void			mapparse(t_fdfenv *env, char **strmap);
 void			rotate(t_point *point, t_fpoint r);
+void	ispeed(t_fdfenv *env);
+void	dspeed(t_fdfenv *env);
+void	icolor(t_fdfenv *env);
+void	dcolor(t_fdfenv *env);
+void	ibgcolor(t_fdfenv *env);
+void	dbgcolor(t_fdfenv *env);
