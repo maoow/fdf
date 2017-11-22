@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:01 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 11:28:18 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/22 11:53:24 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,38 +86,43 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 	}
 }
 
+void		drawpoints(t_fdfenv *env, int i, int j)
+{
+	t_pixel	tmp;
+	t_pixel	tmp2;
+
+	project(env, env->map[i][j], &tmp);
+	if (i < env->mapsize.y - 1)
+	{
+		project(env, env->map[i + 1][j], &tmp2);
+		drawline(env, tmp, tmp2);
+	}
+	if (j < env->mapsize.x - 1)
+	{
+		project(env, env->map[i][j + 1], &tmp2);
+		drawline(env, tmp, tmp2);
+	}
+	if (i == env->x && j == env->y)
+		tmp.color = 0xFF0000;
+	point_add(env, tmp.x, tmp.y, tmp.color);
+	tmp.color = env->map[i][j].color;
+}
+
 void		drawmap(t_fdfenv *env)
 {
 	int		i;
 	int		j;
-	t_pixel	tmp;
-	t_pixel	tmp2;
 
 	i = 0;
 	env->img = mlx_new_image(env->mlx, env->width, env->height);
-	env->imgstr = (unsigned int *)mlx_get_data_addr(env->img, &(env->bpp),
-			&(env->s_l), &(env->endian));
+	env->imgstr = (unsigned int *)mlx_get_data_addr(env->img, &(env->bpp), &(env->s_l), &(env->endian));
 	while (i < env->mapsize.y)
 	{
 		j = 0;
 		while (j < env->mapsize.x)
 		{
-			project(env, env->map[i][j], &tmp);
-			if (i < env->mapsize.y - 1)
-			{
-				project(env, env->map[i + 1][j], &tmp2);
-				drawline(env, tmp, tmp2);
-			}
-			if (i == env->x && j == env->y)
-				tmp.color = 0xFF0000;
-			point_add(env, tmp.x, tmp.y, tmp.color);
-			tmp.color = env->map[i][j].color;
+			drawpoints(env, i, j);
 			j++;
-			if (j < env->mapsize.x)
-			{
-				project(env, env->map[i][j], &tmp2);
-				drawline(env, tmp, tmp2);
-			}
 		}
 		i++;
 	}
