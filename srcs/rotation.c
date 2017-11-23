@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:31 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 10:35:11 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 13:58:14 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ void	rotate(t_point *point, t_fpoint r)
 
 void	maprotate(t_fdfenv *env)
 {
-	int	i;
-	int	j;
-
 	env->rotate.z += getzrotatetype(env);
 	env->rotate.x += getxrotatetype(env);
 	env->rotate.y += getyrotatetype(env);

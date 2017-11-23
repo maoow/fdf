@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 16:07:34 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 13:55:45 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ void			error(char *str)
 
 void			init_env(t_fdfenv *env)
 {
-	int	bpp;
-	int	s_l;
-	int	endian;
-
 	env->mlx = mlx_init();
-	env->width = 1240;
-	env->height = 600;
+	env->width = 2200;
+	env->height = 1000;
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
@@ -72,7 +68,6 @@ void			getmap(t_fdfenv *env, char *path)
 {
 	int		fd;
 	int		i;
-	int		j;
 	char	**strmap;
 
 	i = 0;
@@ -100,8 +95,6 @@ void			getmap(t_fdfenv *env, char *path)
 
 int				main(int ac, char **av)
 {
-	void		*mlx;
-	void		*win;
 	size_t		i;
 	t_fdfenv	env;
 

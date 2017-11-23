@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:22 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 13:29:41 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 13:57:10 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		addpoint(t_fdfenv *env, size_t x, size_t y, char *str)
 
 void	initmap(t_fdfenv *env)
 {
-	size_t	i;
+	int	i;
 
 	env->map = (t_point **)malloc(env->mapsize.y * sizeof(t_point *));
 	i = 0;
@@ -87,9 +87,9 @@ void	initmap(t_fdfenv *env)
 
 void	mapsize(t_fdfenv *env, char **strmap)
 {
-	size_t	i;
-	size_t	j;
-	size_t	x;
+	int		i;
+	int		j;
+	int		x;
 
 	j = 0;
 	while (strmap[j])
