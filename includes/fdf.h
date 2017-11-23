@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:54 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:12:36 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:48:12 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,9 @@ void			icolor(t_fdfenv *env);
 void			dcolor(t_fdfenv *env);
 void			ibgcolor(t_fdfenv *env);
 void			dbgcolor(t_fdfenv *env);
+void			getcolor(t_point *point, char *str);
+void			point_add(t_fdfenv *env, int x, int y, int color);
+void			pixel_add(t_fdfenv *env, int x, int y, int color);
+void			background(t_fdfenv *env);
 
 #endif
