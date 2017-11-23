@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 12:55:51 by cbinet            #+#    #+#              #
-#    Updated: 2017/11/22 15:44:15 by cbinet           ###   ########.fr        #
+#    Updated: 2017/11/23 13:53:56 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ NAME = fdf
 CC = gcc
 CFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
 LFLAGS = -IGL -IGLUT -lXext -lX11 -lmlx -lXext
-DEBUG = -flto -ofast -o2
+DEBUG = -flto -ofast -o2 -Wall -Wextra -Werror
 DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
 CPPFLAGS = -iquote includes/mlx -iquote includes -iquote $(LIB_PATH)$(INC)
 
 SRC_PATH = srcs/
-SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c movepoint.c
+SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c movepoint.c autorotation.c color.c
 
 OBJ_PATH = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
