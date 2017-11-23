@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:22 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:50:04 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 16:02:20 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void	initmap(t_fdfenv *env)
 {
 	int	i;
 
-	if ((env->map = (t_point **)malloc(env->mapsize.y * sizeof(t_point *))) == NULL)
+	if ((env->map = (t_point **)malloc(env->mapsize.y * sizeof(t_point *)))
+			== NULL)
 		error("malloc");
 	i = 0;
 	while (i < env->mapsize.y)
 	{
-		if ((env->map[i] = (t_point *)malloc(env->mapsize.x * sizeof(t_point))) == NULL)
+		if ((env->map[i] = (t_point *)malloc(env->mapsize.x * sizeof(t_point)))
+				== NULL)
 			error("malloc");
 		i++;
 	}
