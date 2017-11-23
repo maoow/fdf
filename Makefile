@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 12:55:51 by cbinet            #+#    #+#              #
-#    Updated: 2017/11/23 13:53:56 by cbinet           ###   ########.fr        #
+#    Updated: 2017/11/23 14:32:24 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ clean:
 
 fclean: clean
 	@make fclean -C libft
-	@make fclean -C includes/mlx
 	@rm -rf $(NAME)
 	@echo "\033[31mBinary names removed.\033[0m"
 
