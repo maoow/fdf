@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 12:55:51 by cbinet            #+#    #+#              #
-#    Updated: 2017/11/23 15:21:28 by cbinet           ###   ########.fr        #
+#    Updated: 2017/11/23 15:51:13 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,21 +20,22 @@ DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
 CPPFLAGS = -iquote mlx -iquote includes -iquote $(LIB_PATH)$(INC)
 
 SRC_PATH = srcs/
-SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c movepoint.c autorotation.c color.c
+SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c \
+		   movepoint.c autorotation.c color.c camera.c drawaccessor.c getcolor.c
 
 OBJ_PATH = obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
-SRCS = $(addprefix $(SRC_PATH), $(SRC_NAME))
-OBJS = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-INC = includes/
-LIB_PATH := libft/
-LIB := $(LIB_PATH)libftprintf.a  mlx/libmlx.a
-LIB_INCLUDE := $(LIB_PATH)$(INC)libft.h			\
-				$(LIB_PATH)$(INC)get_next_line.h\
-				$(LIB_PATH)$(INC)ft_printf.h \
-				mlx/mlx.h
-HEADER := $(LIB_INCLUDE)						\
-		 includes/fdf.h
+	SRCS = $(addprefix $(SRC_PATH), $(SRC_NAME))
+	OBJS = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+	INC = includes/
+	LIB_PATH := libft/
+	LIB := $(LIB_PATH)libftprintf.a  mlx/libmlx.a
+	LIB_INCLUDE := $(LIB_PATH)$(INC)libft.h			\
+		$(LIB_PATH)$(INC)get_next_line.h\
+		$(LIB_PATH)$(INC)ft_printf.h \
+		mlx/mlx.h
+	HEADER := $(LIB_INCLUDE)						\
+		includes/fdf.h
 
 all: lib $(NAME)
 
@@ -46,7 +47,7 @@ $(NAME): $(OBJS)
 lib:
 	@make -C libft
 	@make -C mlx
-	
+
 $(OBJS): | $(OBJ_PATH)
 
 $(OBJ_PATH):
