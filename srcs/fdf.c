@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:14:51 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:29:29 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void		addline(char ***strmap, int i)
 	char	**strmap2;
 	int		j;
 
-	strmap2 = (char **)malloc(i * sizeof(char *));
+	if ((strmap2 = (char **)malloc(i * sizeof(char *))) == NULL)
+		error("malloc");
 	j = 0;
 	while (j < i)
 	{
@@ -56,7 +57,8 @@ static void		addline(char ***strmap, int i)
 		j++;
 	}
 	free(*strmap);
-	*strmap = (char **)malloc((i + 1) * sizeof(char *));
+	if ((*strmap = (char **)malloc((i + 1) * sizeof(char *))) == NULL)
+		error("malloc");
 	j = 0;
 	while (j < i)
 	{
@@ -74,13 +76,13 @@ void			getmap(t_fdfenv *env, char *path)
 	char	**strmap;
 
 	i = 0;
-	strmap = (char **)malloc(sizeof(char*));
+	if ((strmap = (char **)malloc(sizeof(char*))) == NULL)
+		error("malloc");
 	if ((fd = open(path, O_RDONLY)) > 0)
 	{
 		while (get_next_line(fd, &(strmap[i])) > 0)
 		{
-			i++;
-			addline(&strmap, i);
+			addline(&strmap, ++i);
 		}
 		if (i == 0)
 			error("file not supported");
