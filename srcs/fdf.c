@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:29:29 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 16:01:35 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int				main(int ac, char **av)
 	i = 0;
 	if (ac == 1)
 		error("not arg");
+	if (ft_strlen(av[1]) < 4 || ft_strcmp(av[1] + ft_strlen(av[1]) - 4, ".fdf"))
+		error("not a map");
 	getmap(&env, av[1]);
 	init_env(&env);
 	drawmap(&env);
