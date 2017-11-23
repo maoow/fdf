@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:31 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 13:58:14 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:24:33 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 
 float	getxrotatetype(t_fdfenv *env)
 {
-	if (env->key == k_u)
+	if (env->key == K_U)
 		return (0.2);
-	if (env->key == k_i)
+	if (env->key == K_I)
 		return (-0.2);
 	return (0);
 }
 
 float	getyrotatetype(t_fdfenv *env)
 {
-	if (env->key == k_7)
+	if (env->key == K_7)
 		return (0.2);
-	if (env->key == k_8)
+	if (env->key == K_8)
 		return (-0.2);
 	return (0);
 }
 
 float	getzrotatetype(t_fdfenv *env)
 {
-	if (env->key == k_o)
+	if (env->key == K_O)
 		return (0.2);
-	if (env->key == k_y)
+	if (env->key == K_Y)
 		return (-0.2);
 	return (0);
 }

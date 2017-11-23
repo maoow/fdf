@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:06:41 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 10:19:04 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:16:55 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void			higherpoint(t_fdfenv *env)
 {
-if (env->y >= 0 && env->y <= env->mapsize.y && env->x >= 0 && env->x <= env->mapsize.x)
-	env->map[env->x][env->y].z++;
+	if (env->y >= 0 && env->y <= env->mapsize.y && env->x >= 0
+			&& env->x <= env->mapsize.x)
+		env->map[env->x][env->y].z++;
 }
 
 void			lowerpoint(t_fdfenv *env)
 {
-if (env->y >= 0 && env->y <= env->mapsize.y && env->x >= 0 && env->x <= env->mapsize.x)
-	env->map[env->x][env->y].z--;
+	if (env->y >= 0 && env->y <= env->mapsize.y && env->x >= 0
+			&& env->x <= env->mapsize.x)
+		env->map[env->x][env->y].z--;
 }
 
 void			higher(t_fdfenv *env)

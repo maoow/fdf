@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 14:05:29 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:14:51 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void			init_env(t_fdfenv *env)
 	env->camera.a.y = -15;
 	env->camera.a.z = 2000;
 	if (env->mapsize.x > env->mapsize.y)
-	env->zoom = 100 / env->mapsize.x + 1;
+		env->zoom = 100 / env->mapsize.x + 1;
 	else
-	env->zoom = 100 / env->mapsize.y + 1;
+		env->zoom = 100 / env->mapsize.y + 1;
 	env->top = 1;
 	env->key = -1;
 	env->speed = 0.02;

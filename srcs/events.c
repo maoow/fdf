@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 13:55:57 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:23:14 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,32 @@ void		(*g_buttonf[B_NB])() =
 
 int			g_key[K_NB] =
 {
-	k_q,
-	k_esc,
-	k_h,
-	k_j,
-	k_k,
-	k_l,
-	k_f,
-	k_d,
-	k_m,
-	k_comma,
-	k_y,
-	k_u,
-	k_i,
-	k_o,
-	k_7,
-	k_8,
-	k_a,
-	k_s,
-	k_e,
-	k_r,
-	k_c,
-	k_v,
-	k_x,
-	k_z,
-	k_point,
-	k_slash
+	K_Q,
+	K_ESC,
+	K_H,
+	K_J,
+	K_K,
+	K_L,
+	K_F,
+	K_D,
+	K_M,
+	K_COMMA,
+	K_Y,
+	K_U,
+	K_I,
+	K_O,
+	K_7,
+	K_8,
+	K_A,
+	K_S,
+	K_E,
+	K_R,
+	K_C,
+	K_V,
+	K_X,
+	K_Z,
+	K_POINT,
+	K_SLASH
 };
 void		(*g_keyf[K_NB])() =
 {

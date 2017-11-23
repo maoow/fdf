@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:26:01 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 13:46:50 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:22:20 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		pixel_add(t_fdfenv *env, int x, int y, int color)
 	}
 }
 
-void	setpen(t_pixel *pen, t_pixel *dir, t_pixel pa, t_pixel pb)
+void		setpen(t_pixel *pen, t_pixel *dir, t_pixel pa, t_pixel pb)
 {
 	dir->x = -1;
 	if (pb.x - pa.x > 0)
@@ -70,17 +70,20 @@ void		drawline(t_fdfenv *env, t_pixel pa, t_pixel pb)
 	while (pen.x * dir.x < pb.x * dir.x)
 	{
 		pen.y = a * pen.x + b;
-		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)));
+				//| (pa.color & pb.color));
 		while ((dir.y * pen.y <= (a * (pen.x + dir.x) + b) * dir.y))
 		{
-			pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+			pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)));
+					//| (pa.color & pb.color));
 			pen.y += dir.y;
 		}
 		pen.x += dir.x;
 	}
 	while (pen.y * dir.y <= pb.y * dir.y)
 	{
-			pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)) | (pa.color & pb.color));
+		pixel_add(env, pen.x, pen.y, (0x888888 & (pa.color | pb.color)));
+				//| (pa.color & pb.color));
 		pen.y += dir.y;
 	}
 }
@@ -106,7 +109,8 @@ void		drawpoints(t_fdfenv *env, int i, int j)
 	point_add(env, tmp.x, tmp.y, tmp.color);
 	tmp.color = env->map[i][j].color;
 }
-void background(t_fdfenv *env)
+
+void		background(t_fdfenv *env)
 {
 	int		i;
 	int		j;
@@ -117,7 +121,7 @@ void background(t_fdfenv *env)
 		j = 0;
 		while (j < env->height)
 		{
-pixel_add(env, i, j, env->color);
+			pixel_add(env, i, j, env->color);
 			j++;
 		}
 		i++;
@@ -131,7 +135,8 @@ void		drawmap(t_fdfenv *env)
 
 	i = 0;
 	env->img = mlx_new_image(env->mlx, env->width, env->height);
-	env->imgstr = (unsigned int *)mlx_get_data_addr(env->img, &(env->bpp), &(env->s_l), &(env->endian));
+	env->imgstr = (unsigned int *)mlx_get_data_addr(env->img, &(env->bpp),
+			&(env->s_l), &(env->endian));
 	background(env);
 	while (i < env->mapsize.y)
 	{
