@@ -6,11 +6,29 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 15:13:37 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:14:22 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 15:48:17 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	background(t_fdfenv *env)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < env->width)
+	{
+		j = 0;
+		while (j < env->height)
+		{
+			pixel_add(env, i, j, env->color);
+			j++;
+		}
+		i++;
+	}
+}
 
 void	icolor(t_fdfenv *env)
 {

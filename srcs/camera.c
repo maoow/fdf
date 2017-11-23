@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 09:26:15 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:40:48 by cbinet           ###   ########.fr       */
+/*   Created: 2017/11/23 15:41:06 by cbinet            #+#    #+#             */
+/*   Updated: 2017/11/23 15:42:13 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void			left(t_fdfenv *env)
+void			higher(t_fdfenv *env)
 {
-	env->camera.a.x -= 10;
+	env->top++;
 }
 
-void			up(t_fdfenv *env)
+void			lower(t_fdfenv *env)
 {
-	env->camera.a.y -= 10;
+	env->top--;
 }
 
-void			down(t_fdfenv *env)
+void			mouserotate(t_fdfenv *env)
 {
-	env->camera.a.y += 10;
+	env->rotate.z -=
+		((float)env->mouse.x - (float)env->width / 2) / env->width;
+	env->rotate.x +=
+		((float)env->mouse.y - (float)env->height / 2) / env->height;
 }
 
-void			right(t_fdfenv *env)
+void			zoom(t_fdfenv *env)
 {
-	env->camera.a.x += 10;
+	env->zoom++;
+}
+
+void			dezoom(t_fdfenv *env)
+{
+	if (env->zoom > 1)
+		env->zoom--;
 }
