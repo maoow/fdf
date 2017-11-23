@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:54 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/22 15:47:16 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/11/23 13:58:15 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,34 @@
 #define K_NB 26
 #define B_NB 4
 
-/*
-#define k_q 12
-#define k_esc 53
-#define k_h 4
-#define k_j 38
-#define k_k 40
-#define k_l 37
-#define k_m 46
-#define k_f 3
-#define k_d 2
-#define k_comma 43
-#define k_y 16
-#define k_u 32
-#define k_i 34
-#define k_o 31
-#define k_7 28
-#define k_8 26
-#define k_a 0
-#define k_s 1
-#define k_e 14
-#define k_r 15
-*/
+#define k_q			12
+#define k_esc		53
+#define k_h			4
+#define k_j			38
+#define k_k			40
+#define k_l			37
+#define k_m			46
+#define k_f			3
+#define k_d			2
+#define k_comma		43
+#define k_y			16
+#define k_u			32
+#define k_i			34
+#define k_o			31
+#define k_7			28
+#define k_8			26
+#define k_a			0
+#define k_s			1
+#define k_e			14
+#define k_r			15
+#define k_c			8
+#define k_v			9
+#define k_z			6
+#define k_x			7
+#define k_point		44
+#define k_slash		47
 
+/*
 #define k_q 113
 #define k_esc 65307
 #define k_h 104
@@ -67,6 +72,7 @@
 #define k_point 46
 #define k_slash 47
 
+*/
 
 typedef struct	s_fpoint
 {
@@ -104,8 +110,8 @@ typedef struct	s_fdfenv
 {
 	void		*mlx;
 	void		*win;
-	size_t		width;
-	size_t		height;
+	int			width;
+	int			height;
 	double		speed;
 	int		x;
 	int		y;
