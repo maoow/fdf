@@ -13,11 +13,12 @@
 NAME = fdf
 
 CC = gcc
-CFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
-LFLAGS = -IGL -IGLUT -lXext -lX11 -lmlx -lXext
-DEBUG = -flto -ofast -o2 -Wall -Wextra -Werror
-DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
-CPPFLAGS = -iquote mlx -iquote includes -iquote $(LIB_PATH)$(INC)
+MLX= lmlx
+MFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
+CFLAGS = -IGL -IGLUT -lXext -lX11 -lm
+#DEBUG = -flto -ofast -o2 -Wall -Wextra -Werror
+#DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
+CPPFLAGS = -iquote $(MLX) -iquote includes -iquote $(LIB_PATH)$(INC)
 
 SRC_PATH = srcs/
 SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c \
@@ -29,11 +30,11 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 	OBJS = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 	INC = includes/
 	LIB_PATH := libft/
-	LIB := $(LIB_PATH)libftprintf.a  mlx/libmlx.a
+	LIB := $(LIB_PATH)libftprintf.a  $(MLX)/libmlx.a
 	LIB_INCLUDE := $(LIB_PATH)$(INC)libft.h			\
 		$(LIB_PATH)$(INC)get_next_line.h\
 		$(LIB_PATH)$(INC)ft_printf.h \
-		mlx/mlx.h
+		$(MLX)/mlx.h
 	HEADER := $(LIB_INCLUDE)						\
 		includes/fdf.h
 
@@ -46,7 +47,7 @@ $(NAME): $(OBJS)
 .PHONY:lib
 lib:
 	@make -C libft
-	@make -C mlx
+#	@make -C $(MLX)
 
 $(OBJS): | $(OBJ_PATH)
 
@@ -59,7 +60,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER) $(LIB)
 .PHONY:clean
 clean:
 	@make clean -C libft
-	@make clean -C mlx
+	@make clean -C $(MLX)
 	@rm -rf $(OBJ_PATH)
 	@echo "\033[31mObjects files removed.\033[0m"
 
