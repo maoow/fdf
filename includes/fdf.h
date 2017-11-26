@@ -19,6 +19,35 @@
 # define K_NB 26
 # define B_NB 4
 
+
+#define k_q 113
+ #define k_esc 65307
+ #define k_h 104
+ #define k_j 106
+ #define k_k 107
+ #define k_l 108
+ #define k_m 109
+ #define k_f 102
+ #define k_d 100
+ #define k_comma 44
+ #define k_y 121
+ #define k_u 117
+ #define k_i 105
+ #define k_o 111
+ #define k_7 55
+ #define k_8 56
+ #define k_a 97
+ #define k_s 115
+ #define k_e 101
+ #define k_r 114
+ #define k_c 99
+ #define k_v 118
+ #define k_z 122
+ #define k_x 120
+ #define k_point 46
+ #define k_slash 47
+
+
 # define K_Q			12
 # define K_ESC			53
 # define K_H			4
