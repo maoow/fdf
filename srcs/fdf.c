@@ -100,10 +100,8 @@ void			getmap(t_fdfenv *env, char *path)
 
 int				main(int ac, char **av)
 {
-	size_t		i;
 	t_fdfenv	env;
 
-	i = 0;
 	if (ac == 1)
 		error("no arg");
 	if (ft_strlen(av[1]) < 4 || ft_strcmp(av[1] + ft_strlen(av[1]) - 4, ".fdf"))
