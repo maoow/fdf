@@ -59,6 +59,7 @@ int			g_key[K_NB] =
 	K_V,
 	K_X,
 	K_Z,
+	K_SPACE,
 	K_POINT,
 	K_SLASH
 };
@@ -88,6 +89,7 @@ void		(*g_keyf[K_NB])() =
 	&dspeed,
 	&icolor,
 	&dcolor,
+	&center,
 	&ibgcolor,
 	&dbgcolor
 };

@@ -21,8 +21,8 @@ void			error(char *str)
 void			init_env(t_fdfenv *env)
 {
 	env->mlx = mlx_init();
-	env->width = 2200;
-	env->height = 1000;
+	env->width = 1000;
+	env->height = 600;
 	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;

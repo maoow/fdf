@@ -12,6 +12,12 @@
 
 #include "fdf.h"
 
+void			center(t_fdfenv *env)
+{
+	env->rotate.x = 0;
+	env->rotate.y = 0;
+	env->rotate.z = 0;
+}
 void			left(t_fdfenv *env)
 {
 	env->camera.a.x -= 10;
