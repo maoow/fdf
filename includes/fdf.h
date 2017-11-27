@@ -20,34 +20,35 @@
 # define B_NB 4
 
 
-#define k_q 113
- #define k_esc 65307
- #define k_h 104
- #define k_j 106
- #define k_k 107
- #define k_l 108
- #define k_m 109
- #define k_f 102
- #define k_d 100
- #define k_comma 44
- #define k_y 121
- #define k_u 117
- #define k_i 105
- #define k_o 111
- #define k_7 55
- #define k_8 56
- #define k_a 97
- #define k_s 115
- #define k_e 101
- #define k_r 114
- #define k_c 99
- #define k_v 118
- #define k_z 122
- #define k_x 120
- #define k_point 46
- #define k_slash 47
+ #define K_Q 113
+ #define K_ESC 65307
+ #define K_H 104
+ #define K_J 106
+ #define K_K 107
+ #define K_L 108
+ #define K_M 109
+ #define K_F 102
+ #define K_D 100
+ #define K_COMMA 44
+ #define K_Y 121
+ #define K_U 117
+ #define K_I 105
+ #define K_O 111
+ #define K_7 55
+ #define K_8 56
+ #define K_A 97
+ #define K_S 115
+ #define K_E 101
+ #define K_R 114
+ #define K_C 99
+ #define K_V 118
+ #define K_Z 122
+ #define K_X 120
+ #define K_POINT 46
+ #define K_SLASH 47
+ #define K_SPACE 32
 
-
+/*
 # define K_Q			12
 # define K_ESC			53
 # define K_H			4
@@ -74,7 +75,7 @@
 # define K_X			7
 # define K_POINT		44
 # define K_SLASH		47
-
+*/
 typedef struct	s_fpoint
 {
 	float	x;
