@@ -6,18 +6,16 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 12:55:51 by cbinet            #+#    #+#              #
-#    Updated: 2017/11/23 15:51:13 by cbinet           ###   ########.fr        #
+#    Updated: 2017/12/13 15:48:19 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CC = gcc
-MLX= lmlx
-MFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
-CFLAGS = -IGL -IGLUT -lXext -lX11 -lm
-#DEBUG = -flto -ofast -o2 -Wall -Wextra -Werror
-#DEBUG2 = -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
+MLX= mlx
+CFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
+MFLAGS = -IGL -IGLUT -lXext -lX11 -lm
 CPPFLAGS = -iquote $(MLX) -iquote includes -iquote $(LIB_PATH)$(INC)
 
 SRC_PATH = srcs/
@@ -47,7 +45,7 @@ $(NAME): $(OBJS)
 .PHONY:lib
 lib:
 	@make -C libft
-#	@make -C $(MLX)
+	@make -C $(MLX)
 
 $(OBJS): | $(OBJ_PATH)
 

@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:54 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 15:48:12 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/12/13 15:52:31 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,41 @@
 # include "ft_printf.h"
 # include "libft.h"
 # include "get_next_line.h"
-# define K_NB 26
+# define K_NB 27
 # define B_NB 4
 
 
- #define K_Q 113
- #define K_ESC 65307
- #define K_H 104
- #define K_J 106
- #define K_K 107
- #define K_L 108
- #define K_M 109
- #define K_F 102
- #define K_D 100
- #define K_COMMA 44
- #define K_Y 121
- #define K_U 117
- #define K_I 105
- #define K_O 111
- #define K_7 55
- #define K_8 56
- #define K_A 97
- #define K_S 115
- #define K_E 101
- #define K_R 114
- #define K_C 99
- #define K_V 118
- #define K_Z 122
- #define K_X 120
- #define K_POINT 46
- #define K_SLASH 47
- #define K_SPACE 32
+# ifdef linux
 
-/*
+#define K_Q 113
+#define K_ESC 65307
+#define K_H 104
+#define K_J 106
+#define K_K 107
+#define K_L 108
+#define K_M 109
+#define K_F 102
+#define K_D 100
+#define K_COMMA 44
+#define K_Y 121
+#define K_U 117
+#define K_I 105
+#define K_O 111
+#define K_7 55
+#define K_8 56
+#define K_A 97
+#define K_S 115
+#define K_E 101
+#define K_R 114
+#define K_C 99
+#define K_V 118
+#define K_Z 122
+#define K_X 120
+#define K_POINT 46
+#define K_SLASH 47
+#define K_SPACE 32
+
+# else
 # define K_Q			12
 # define K_ESC			53
 # define K_H			4
@@ -75,7 +77,8 @@
 # define K_X			7
 # define K_POINT		44
 # define K_SLASH		47
-*/
+#define K_SPACE 49
+# endif
 typedef struct	s_fpoint
 {
 	float	x;
