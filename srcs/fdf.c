@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:34:12 by cbinet            #+#    #+#             */
-/*   Updated: 2017/11/23 16:03:32 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/12/14 14:27:28 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void			error(char *str)
 void			init_env(t_fdfenv *env)
 {
 	env->mlx = mlx_init();
-	env->width = 1000;
-	env->height = 600;
-	env->win = mlx_new_window(env->mlx, env->width, env->height, "test");
+	env->width = 2560;
+	env->height = 1380;
+	env->win = mlx_new_window(env->mlx, env->width, env->height, "fdf");
 	env->camera.a.x = -15;
 	env->camera.a.y = -15;
 	env->camera.a.z = 2000;
