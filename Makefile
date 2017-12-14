@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 12:55:51 by cbinet            #+#    #+#              #
-#    Updated: 2017/12/13 15:48:19 by cbinet           ###   ########.fr        #
+#    Updated: 2017/12/14 13:15:52 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,14 @@ NAME = fdf
 
 CC = gcc
 MLX= mlx
-CFLAGS = -framework OpenGL -framework AppKit -lmlx # -lXext -lX11 -IGL -IGLUT 
-MFLAGS = -IGL -IGLUT -lXext -lX11 -lm
 CPPFLAGS = -iquote $(MLX) -iquote includes -iquote $(LIB_PATH)$(INC)
+#ifdef __unix__
+MLX=minilibx
+CFLAGS = -IGL -IGLUT -lXext -lX11 -lm
+#else
+MLX=mlx
+CFLAGS = -framework OpenGL -framework AppKit -lmlx #-lXext -lX11
+#endif
 
 SRC_PATH = srcs/
 SRC_NAME = fdf.c move.c events.c parse.c project.c draw.c rotation.c \
