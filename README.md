@@ -3,7 +3,7 @@
   <img src="images/t12.png" width="100%"/>
 </p>
 
-take a .fdf file that define a rectangular with z ordinates and display it using a perpective projection
+take a .fdf file that define a rectangular map with z ordinates and display it using a perpective projection
 if an hexadecimal number is given after the z ordinate, it set the color, otherwise, the color is set by altitude.
 
 example : 
